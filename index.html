@@ -1,14 +1,22 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="羊叔的图谱｜七宗罪 VS 七美德娱乐型自我觉察测试" />
-    <title>羊叔的图谱｜七宗罪 VS 七美德</title>
-    <script type="module" crossorigin src="./index-CDv_Wixp.js"></script>
-    <link rel="stylesheet" crossorigin href="./index-BRI9LMO_.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="羊叔的图谱｜七宗罪 VS 七美德娱乐型自我觉察测试" />
+<title>羊叔的图谱｜七宗罪 VS 七美德</title>
+<script>
+(function(){
+  const files=new Set(["uncle-sheep-archivist-v1.png","share-card-archive-v2.png","deep-report-sheep-archivist.png","scene-relationship.png","scene-action.png","scene-boundary.png"]);
+  const src=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,"src");
+  Object.defineProperty(HTMLImageElement.prototype,"src",{configurable:true,get:src.get,set(v){return src.set.call(this,typeof v==="string"&&files.has(v.slice(1))?"./"+v.slice(1):v)}});
+  const patch=()=>document.querySelectorAll("img[src^=\"/\"]").forEach(i=>{const p=i.getAttribute("src");if(files.has(p.slice(1)))i.setAttribute("src","./"+p.slice(1))});
+  new MutationObserver(patch).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+  patch();
+})();
+</script>
+<script type="module" crossorigin src="./index-Bb73DYhb.js"></script>
+<link rel="stylesheet" crossorigin href="./index-BRI9LMO_.css">
+</head>
+<body><div id="root"></div></body>
 </html>
