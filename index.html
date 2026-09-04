@@ -14,39 +14,41 @@
     .grain { position:absolute; inset:0; pointer-events:none; opacity:.28; background-image:radial-gradient(#806 0.55px,transparent .6px),radial-gradient(#9c8d71 0.45px,transparent .55px); background-position:0 0,7px 9px; background-size:13px 13px,17px 17px; mix-blend-mode:multiply; }
     .screen { position:relative; min-height:100vh; padding:26px 24px 34px; display:flex; flex-direction:column; }
     .hide { display:none!important; }
-    .brand { display:flex; justify-content:space-between; align-items:center; font-family:Arial,sans-serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; }
-    .yangshu { display:flex; align-items:center; gap:8px; color:inherit; font-family:"Songti SC",serif; font-size:11px; letter-spacing:1px; line-height:1.15; text-align:left; }
+    .brand { display:flex; justify-content:space-between; align-items:center; font-family:Arial,sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; }
+    .yangshu { display:flex; align-items:center; gap:8px; color:inherit; font-family:"Songti SC",serif; font-size:13px; letter-spacing:1px; line-height:1.25; text-align:left; }
     .yangshu svg { width:37px; height:37px; overflow:visible; }
     .yangshu .horn,.yangshu .face,.yangshu .glasses { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
     .yangshu .beard { fill:currentColor; }
     .seal { border:1px solid var(--red); color:var(--red); border-radius:50%; width:44px; height:44px; display:grid; place-items:center; transform:rotate(-8deg); font-family:"Songti SC",serif; letter-spacing:0; font-size:13px; }
     .home-main { flex:1; display:flex; flex-direction:column; justify-content:center; padding:26px 0 14px; }
-    .eyebrow { color:var(--red); font-family:Arial,sans-serif; letter-spacing:2.4px; font-size:11px; margin:0 0 15px; }
+    .eyebrow { color:var(--red); font-family:Arial,sans-serif; letter-spacing:2.4px; font-size:13px; margin:0 0 16px; }
     h1 { font-size:clamp(42px,9vw,70px); line-height:.98; font-weight:500; letter-spacing:5px; margin:0; }
     h1 span { display:block; font-size:.42em; letter-spacing:9px; margin:14px 0 0 8px; font-family:Arial,sans-serif; font-weight:400; }
-    .home-copy { margin:34px 0 26px; font-size:18px; line-height:1.9; max-width:390px; }
-    .diagram { height:185px; position:relative; margin:8px 0 24px; }
-    .diagram svg { position:absolute; left:53%; transform:translateX(-50%); width:245px; height:185px; overflow:visible; }
-    .diagram .figure { position:absolute; left:calc(50% - 133px); bottom:4px; width:92px; height:136px; border:2px solid var(--ink); border-radius:48% 48% 40% 42%; background:var(--paper); transform:rotate(9deg); }
-    .diagram .figure:before { content:""; position:absolute; width:61px; height:65px; left:12px; top:-41px; border:2px solid var(--ink); border-radius:49% 50% 47% 46%; background:var(--paper); }
-    .diagram .figure:after { content:"×  ×"; letter-spacing:7px; position:absolute; left:16px; top:-13px; font-family:Arial,sans-serif; font-size:15px; }
-    .cta { border:0; background:var(--ink); color:var(--paper); padding:17px 20px; width:100%; font-weight:600; font-size:16px; letter-spacing:1px; box-shadow:4px 4px 0 var(--red); transition:transform .16s,box-shadow .16s; }
+    .home-copy { margin:28px 0 23px; font-size:20px; line-height:1.8; max-width:460px; }
+    .journey-summary { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:0 0 24px; }
+    .journey-summary div { min-height:88px; padding:13px 11px; border:1px solid #6c4850; background:rgba(255,255,255,.035); }
+    .journey-summary strong { display:block; color:#efa2af; font:700 26px Arial,sans-serif; line-height:1; margin-bottom:8px; }
+    .journey-summary span { display:block; color:#dfcac1; font-size:14px; line-height:1.45; }
+    .atlas-heading { display:flex; justify-content:space-between; align-items:baseline; margin:0 0 10px; color:#f3e4da; font-size:18px; }
+    .atlas-heading small { color:#d8b9a8; font-size:13px; }
+    .cta { border:0; background:var(--ink); color:var(--paper); padding:20px; width:100%; font-weight:700; font-size:18px; letter-spacing:1px; box-shadow:4px 4px 0 var(--red); transition:transform .16s,box-shadow .16s; }
     .cta:hover { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--red); }
     .access-gate { margin:0 0 16px; padding:14px; border:1px solid #67444c; background:rgba(255,255,255,.025); }
-    .access-gate label { display:block; margin:0 0 9px; color:#e9a0ae; font:10px Arial,sans-serif; letter-spacing:2px; }
-    .access-gate input { width:100%; border:1px solid #8e6870; border-radius:0; background:#27171b; color:#f4e9df; padding:13px 14px; font:600 15px Arial,sans-serif; letter-spacing:1.5px; outline:none; }
+    .access-gate label { display:block; margin:0 0 9px; color:#e9a0ae; font:12px Arial,sans-serif; letter-spacing:2px; }
+    .access-gate input { width:100%; border:1px solid #8e6870; border-radius:0; background:#27171b; color:#f4e9df; padding:15px 14px; font:600 18px Arial,sans-serif; letter-spacing:1.5px; outline:none; }
     .access-gate input:focus { border-color:#e9a0ae; box-shadow:0 0 0 2px rgba(233,160,174,.14); }
-    .access-status { min-height:17px; margin:8px 0 0; color:#c7afa4; font-size:12px; }
+    .access-status { min-height:20px; margin:9px 0 0; color:#e0c8be; font-size:14px; }
     .access-status.error { color:#ffb4bf; }
-    .note { color:var(--muted); font-size:12px; line-height:1.7; margin:18px 0 0; text-align:center; }
+    .note { color:var(--muted); font-size:14px; line-height:1.7; margin:18px 0 0; text-align:center; }
     #home,#quiz { background:#1b1114; color:#f4e9df; }
     #home .brand,#quiz .progress-line,#quiz .question-bottom { color:#d8b9a8; }
     #home .eyebrow,#quiz .dimension { color:#e9a0ae; }
     #home .seal { color:#e9a0ae; border-color:#e9a0ae; }
     #home .home-copy,#home .note { color:#c7afa4; }
-    #home .diagram { filter:sepia(.4) saturate(.55) hue-rotate(295deg); opacity:.92; }
-    .cover-atlas { display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin:0 0 20px; padding:7px; border:1px solid #5d4149; background:rgba(255,255,255,.025); }
-    .cover-atlas img { width:100%; aspect-ratio:.74; object-fit:cover; object-position:center top; border:1px solid rgba(226,184,154,.55); filter:sepia(.15) saturate(.75); }
+    .cover-atlas { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:11px; margin:0 0 23px; padding:10px; border:1px solid #76525a; background:rgba(255,255,255,.025); }
+    .cover-atlas figure { margin:0; border:1px solid rgba(226,184,154,.65); background:#bda98a; }
+    .cover-atlas img { display:block; width:100%; aspect-ratio:3/4; object-fit:contain; object-position:center; filter:sepia(.1) saturate(.82); }
+    .cover-atlas figcaption { padding:9px 10px; color:#faeade; background:#2a191d; font-size:16px; font-weight:700; letter-spacing:.5px; }
     #home .cta { background:#e7a1ae; color:#241317; box-shadow:4px 4px 0 #765047; }
     #quiz .progress-line { border-color:#60444b; }
     #quiz .progress-track { background:#3a252a; }
@@ -54,29 +56,29 @@
     #quiz .option { border-color:#563941; color:#f4e9df; background:rgba(255,255,255,.02); }
     #quiz .option:hover,#quiz .option.selected { border-color:#e79cac; background:#43262e; transform:translateX(4px); }
     #quiz .back { color:#c7afa4; }
-    .question-art { display:flex; align-items:center; gap:14px; margin:0 0 20px; }
-    .question-art img { width:54px; height:54px; object-fit:cover; border-radius:50%; border:1px solid #e79cac; filter:saturate(.7) contrast(1.05); }
-    .question-art span { color:#d8b9a8; font-family:Arial,sans-serif; font-size:10px; letter-spacing:2px; line-height:1.8; }
+    .question-art { display:flex; align-items:center; gap:15px; margin:0 0 24px; }
+    .question-art img { width:64px; height:64px; object-fit:cover; border-radius:50%; border:1px solid #e79cac; filter:saturate(.7) contrast(1.05); }
+    .question-art span { color:#ead1c7; font-family:Arial,sans-serif; font-size:12px; letter-spacing:2px; line-height:1.8; }
     #checkpoint { background:#1b1114; color:#f4e9df; }
     #checkpoint .brand { color:#d8b9a8; }
     .checkpoint-main { flex:1; display:flex; flex-direction:column; justify-content:center; padding:30px 0; }
     .checkpoint-main h2 { font-size:clamp(31px,7vw,44px); font-weight:500; line-height:1.25; margin:0 0 18px; letter-spacing:2px; }
-    .checkpoint-main > p:not(.eyebrow):not(.checkpoint-note) { color:#d2bcb2; line-height:1.85; font-size:16px; margin:0 0 22px; max-width:430px; }
+    .checkpoint-main > p:not(.eyebrow):not(.checkpoint-note) { color:#e1cbc1; line-height:1.8; font-size:18px; margin:0 0 24px; max-width:500px; }
     .checkpoint-art { width:min(100%,360px); aspect-ratio:4/5; align-self:center; border:1px solid #a78479; overflow:hidden; position:relative; margin:5px 0 15px; background:#cdbb9c; box-shadow:4px 4px 0 rgba(126,77,68,.45); }
     .checkpoint-art:after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(145deg,rgba(255,239,206,.08),rgba(27,17,20,.12)); }
     .checkpoint-art img { width:100%; height:100%; object-fit:contain; object-position:center; filter:saturate(.75) contrast(1.05); }
-    .checkpoint-note { color:#e7a1ae; line-height:1.7; font-size:13px; margin:0; }
+    .checkpoint-note { color:#f0b0bc; line-height:1.7; font-size:15px; margin:0; }
     #checkpoint .cta { background:#e7a1ae; color:#241317; box-shadow:4px 4px 0 #765047; }
-    .progress-line { display:flex; justify-content:space-between; align-items:center; font-family:Arial,sans-serif; font-size:11px; letter-spacing:1px; border-bottom:1px solid var(--line); padding-bottom:13px; }
-    .progress-track { height:3px; background:#dad3c6; margin:17px 0 0; }
+    .progress-line { display:flex; justify-content:space-between; align-items:center; font-family:Arial,sans-serif; font-size:13px; letter-spacing:1px; border-bottom:1px solid var(--line); padding-bottom:14px; }
+    .progress-track { height:5px; background:#dad3c6; margin:17px 0 0; }
     .progress-fill { height:100%; background:var(--red); transition:width .25s ease; }
-    .question-wrap { flex:1; display:flex; flex-direction:column; justify-content:center; padding:32px 0; }
-    .dimension { color:var(--red); letter-spacing:3px; font-size:13px; margin:0 0 20px; }
-    .question { font-size:clamp(25px,6vw,37px); line-height:1.45; font-weight:500; margin:0 0 38px; letter-spacing:1px; }
-    .options { display:grid; gap:11px; }
-    .option { text-align:left; background:transparent; border:1px solid var(--line); padding:16px 17px; font-size:16px; transition:.15s; }
+    .question-wrap { flex:1; display:flex; flex-direction:column; justify-content:center; padding:38px 0; }
+    .dimension { color:var(--red); letter-spacing:3px; font-size:15px; margin:0 0 22px; }
+    .question { font-size:clamp(30px,7.5vw,46px); line-height:1.42; font-weight:600; margin:0 0 40px; letter-spacing:.7px; }
+    .options { display:grid; gap:14px; }
+    .option { text-align:left; background:transparent; border:1px solid var(--line); padding:19px 18px; font-size:18px; line-height:1.55; transition:.15s; }
     .option:hover,.option.selected { border-color:var(--ink); background:#e6dece; transform:translateX(4px); }
-    .question-bottom { display:flex; justify-content:space-between; align-items:center; font-size:13px; }
+    .question-bottom { display:flex; justify-content:space-between; align-items:center; font-size:15px; }
     .back { border:0; background:transparent; color:var(--muted); padding:9px 0; }
     .result { padding-bottom:26px; }
     #results { background:#1b1114; color:#f4e9df; padding-top:46px; }
@@ -104,64 +106,64 @@
     .card-yangshu .horn,.card-yangshu .face,.card-yangshu .glasses { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
     .card-yangshu .beard { fill:currentColor; }
     .stamp { width:40px; height:40px; border:1px solid var(--red); color:var(--red); border-radius:50%; display:grid; place-items:center; font-family:"Songti SC",serif; font-size:12px; transform:rotate(-10deg); letter-spacing:0; }
-    .result-copy { border-left:3px solid var(--red); margin:27px 2px 22px; padding:2px 0 2px 15px; font-size:16px; line-height:1.85; }
+    .result-copy { border-left:3px solid var(--red); margin:30px 2px 24px; padding:3px 0 3px 16px; font-size:18px; line-height:1.8; }
     .combination-card { margin:0 0 28px; padding:19px 18px; border:1px solid #795059; background:linear-gradient(135deg,#2a191d,#1d1215); box-shadow:4px 4px 0 rgba(153,76,83,.35); }
-    .combination-card > p:first-child { margin:0 0 8px; color:#e7a1ae; font:10px Arial,sans-serif; letter-spacing:2px; }
-    .combination-card h2 { margin:0 0 10px; color:#f8e8de; font-family:"Songti SC",serif; font-size:25px; letter-spacing:1px; }
-    .combination-card > p:not(:first-child) { margin:0; color:#d9c3ba; font-size:15px; line-height:1.8; }
+    .combination-card > p:first-child { margin:0 0 8px; color:#e7a1ae; font:12px Arial,sans-serif; letter-spacing:2px; }
+    .combination-card h2 { margin:0 0 11px; color:#f8e8de; font-family:"Songti SC",serif; font-size:28px; letter-spacing:1px; }
+    .combination-card > p:not(:first-child) { margin:0; color:#ead3c9; font-size:17px; line-height:1.8; }
     .signal-tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:14px; }
-    .signal-tags span { border:1px solid #8f6369; color:#f0b9c1; padding:5px 8px; font-size:12px; }
+    .signal-tags span { border:1px solid #8f6369; color:#f5c2ca; padding:7px 9px; font-size:14px; }
     .spectrum { color:#f4e9df; margin:3px -24px 0; padding:27px 24px 30px; border-top:1px solid #5b4147; border-bottom:1px solid #5b4147; }
-    .spectrum h2 { color:#e9a0ae; font-size:21px; letter-spacing:1px; margin:0 0 7px; }
-    .spectrum .sub { color:#cbb5ad; font-size:14px; line-height:1.65; margin:0 0 12px; }
+    .spectrum h2 { color:#e9a0ae; font-size:25px; letter-spacing:1px; margin:0 0 9px; }
+    .spectrum .sub { color:#e3cbc1; font-size:17px; line-height:1.7; margin:0 0 14px; }
     .spectrum-chart { width:100%; height:380px; margin:0; display:block; }
     .sin-bars { display:grid; grid-template-columns:1fr; gap:13px; margin-top:5px; }
-    .sin-bar { display:grid; grid-template-columns:43px 1fr 38px; gap:10px; align-items:center; }
-    .sin-bar img { width:43px; height:43px; object-fit:cover; border:1px solid #9f7864; border-radius:50%; }
+    .sin-bar { display:grid; grid-template-columns:55px 1fr 42px; gap:12px; align-items:center; }
+    .sin-bar img { width:55px; height:55px; object-fit:cover; border:1px solid #9f7864; border-radius:50%; }
     .sin-bar-main { min-width:0; }
-    .sin-bar-head { display:flex; justify-content:space-between; color:#f3e6de; font-size:15px; margin-bottom:6px; }
-    .sin-bar-track { height:7px; background:#442d33; overflow:hidden; }
+    .sin-bar-head { display:flex; justify-content:space-between; color:#f3e6de; font-size:17px; margin-bottom:7px; }
+    .sin-bar-track { height:9px; background:#442d33; overflow:hidden; }
     .sin-bar-track span { display:block; height:100%; background:linear-gradient(90deg,#b34d65,#efa2af); }
-    .sin-bar > strong { color:#efa2af; font-size:16px; text-align:right; }
-    .spectrum-note { color:#c8b2aa; font-size:13px; line-height:1.75; margin:21px 0 0; }
+    .sin-bar > strong { color:#efa2af; font-size:18px; text-align:right; }
+    .spectrum-note { color:#ddc6bd; font-size:15px; line-height:1.75; margin:21px 0 0; }
     .profile-report { margin:30px 0 0; }
     .report-heading { display:grid; grid-template-columns:1fr auto; align-items:end; gap:4px 14px; margin:0 0 15px; }
-    .report-heading p { grid-column:1/-1; color:#e7a1ae; font-family:Arial,sans-serif; font-size:10px; letter-spacing:2px; margin:0; }
-    .report-heading h2 { color:#f2e3da; font-size:25px; margin:0; letter-spacing:1px; }
-    .report-heading span { color:#bda89f; font-size:11px; padding-bottom:4px; }
-    .core-card { display:grid; grid-template-columns:112px 1fr; gap:15px; padding:12px; background:#e9d8b9; color:#2c1f19; border:1px solid #c49a72; box-shadow:4px 4px 0 #6c3d3e; }
-    .core-card > img { width:112px; height:177px; object-fit:cover; object-position:center top; border:1px solid #7b5842; }
+    .report-heading p { grid-column:1/-1; color:#e7a1ae; font-family:Arial,sans-serif; font-size:12px; letter-spacing:2px; margin:0; }
+    .report-heading h2 { color:#f2e3da; font-size:29px; margin:0; letter-spacing:1px; }
+    .report-heading span { color:#d8c0b6; font-size:13px; padding-bottom:4px; }
+    .core-card { display:grid; grid-template-columns:130px 1fr; gap:17px; padding:14px; background:#e9d8b9; color:#2c1f19; border:1px solid #c49a72; box-shadow:4px 4px 0 #6c3d3e; }
+    .core-card > img { width:130px; height:195px; object-fit:cover; object-position:center top; border:1px solid #7b5842; }
     .core-copy { display:flex; flex-direction:column; min-width:0; }
-    .card-kicker { color:#8d3728; font-family:Arial,sans-serif; font-size:10px; font-weight:700; letter-spacing:1.5px; margin:0 0 8px; }
-    .core-copy h3 { font-size:23px; line-height:1.25; margin:0 0 9px; letter-spacing:.5px; }
-    .core-copy > p:not(.card-kicker) { font-size:14px; line-height:1.75; margin:0; }
+    .card-kicker { color:#8d3728; font-family:Arial,sans-serif; font-size:12px; font-weight:700; letter-spacing:1.5px; margin:0 0 8px; }
+    .core-copy h3 { font-size:26px; line-height:1.28; margin:0 0 10px; letter-spacing:.5px; }
+    .core-copy > p:not(.card-kicker) { font-size:17px; line-height:1.7; margin:0; }
     .core-tag { margin-top:auto; padding-top:9px; border-top:1px solid #a67a5a; }
-    .core-tag span { display:block; color:#72513e; font-size:11px; margin-bottom:3px; }
-    .core-tag b { font-size:15px; }
+    .core-tag span { display:block; color:#72513e; font-size:13px; margin-bottom:4px; }
+    .core-tag b { font-size:17px; }
     .insight-grid { display:grid; gap:10px; margin:14px 0; }
     .insight-card { background:#2b1a1e; border:1px solid #68464b; padding:17px 16px; box-shadow:inset 3px 0 0 #b85063; }
-    .insight-index { color:#e7a1ae; font-family:Arial,sans-serif; font-size:10px; letter-spacing:1.5px; }
-    .insight-card h3 { color:#f4e8df; font-size:18px; margin:9px 0 7px; }
-    .insight-card p { color:#d5c0b7; font-size:14px; line-height:1.8; margin:0; }
+    .insight-index { color:#e7a1ae; font-family:Arial,sans-serif; font-size:12px; letter-spacing:1.5px; }
+    .insight-card h3 { color:#f4e8df; font-size:22px; margin:9px 0 8px; }
+    .insight-card p { color:#ead3c9; font-size:17px; line-height:1.75; margin:0; }
     .ritual-card { background:#e9d8b9; color:#2c1f19; padding:20px 18px; border:1px solid #c49a72; box-shadow:4px 4px 0 #6c3d3e; }
-    .ritual-card h3 { font-size:21px; margin:0 0 8px; }
-    .ritual-card > div > p:not(.card-kicker) { font-size:14px; line-height:1.75; margin:0; }
-    .ritual-card ol { margin:17px 0 0; padding:0; list-style:none; display:grid; gap:7px; counter-reset:day; }
-    .ritual-card li { counter-increment:day; border-top:1px solid #c59c78; padding:8px 0 0 32px; position:relative; font-size:13px; line-height:1.6; }
-    .ritual-card li:before { content:"0" counter(day); position:absolute; left:0; top:8px; color:#8d3728; font-family:Arial,sans-serif; font-size:11px; font-weight:700; }
+    .ritual-card h3 { font-size:25px; margin:0 0 9px; }
+    .ritual-card > div > p:not(.card-kicker) { font-size:17px; line-height:1.75; margin:0; }
+    .ritual-card ol { margin:18px 0 0; padding:0; list-style:none; display:grid; gap:10px; counter-reset:day; }
+    .ritual-card li { counter-increment:day; border-top:1px solid #c59c78; padding:10px 0 0 36px; position:relative; font-size:16px; line-height:1.7; }
+    .ritual-card li:before { content:"0" counter(day); position:absolute; left:0; top:10px; color:#8d3728; font-family:Arial,sans-serif; font-size:13px; font-weight:700; }
     .resource-card { margin-top:14px; padding:18px; border:1px solid #82605b; background:linear-gradient(115deg,#3b2428,#211418); }
-    .resource-card span { color:#e7a1ae; font-size:12px; }
-    .resource-card h3 { color:#f2e3da; font-size:24px; margin:7px 0; }
-    .resource-card p { color:#d5c0b7; font-size:14px; line-height:1.8; margin:0; }
+    .resource-card span { color:#e7a1ae; font-size:14px; }
+    .resource-card h3 { color:#f2e3da; font-size:28px; margin:8px 0; }
+    .resource-card p { color:#ead3c9; font-size:17px; line-height:1.75; margin:0; }
     .actions { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    .secondary { border:1px solid var(--ink); background:transparent; padding:15px 8px; font-size:14px; }
+    .secondary { border:1px solid var(--ink); background:transparent; padding:17px 8px; font-size:16px; }
     .result .cta { margin-top:13px; }
     .detail { border-top:1px solid var(--line); margin-top:27px; padding-top:22px; }
     .detail h2 { font-size:16px; margin:0 0 12px; font-weight:500; letter-spacing:2px; }
     .detail p { font-size:15px; line-height:1.9; margin:0 0 19px; }
     .toast { position:fixed; bottom:24px; left:50%; transform:translate(-50%,120px); color:var(--paper); background:var(--ink); padding:12px 16px; font-size:13px; transition:transform .25s; z-index:10; }
     .toast.on { transform:translate(-50%,0); }
-    @media (min-width:620px) { .screen { padding:32px 54px 42px; } .result-card { max-width:540px; margin:auto; } .spectrum { margin-left:-54px; margin-right:-54px; padding-left:54px; padding-right:54px; } }
+    @media (min-width:620px) { .screen { padding:38px 64px 48px; } .cover-atlas { grid-template-columns:repeat(3,minmax(0,1fr)); } .result-card { max-width:540px; margin:auto; } .spectrum { margin-left:-64px; margin-right:-64px; padding-left:64px; padding-right:64px; } }
     @media print { body { background:white; } .app { width:100%; } .no-print { display:none!important; } .result-card { margin:auto; max-height:100vh; } }
   </style>
 </head>
@@ -173,11 +175,9 @@
         <p class="eyebrow">01 / 十四维人性光谱 · 娱乐型自我探索</p>
         <h1>七宗罪<br>七美德<span>YOUR SPECTRUM</span></h1>
         <p class="home-copy">看见会把你推向失衡的本能，<br>也看见你可以拿回来的选择权。</p>
-        <div class="diagram" aria-hidden="true">
-          <svg viewBox="0 0 245 185"><g fill="none" stroke="#171716" stroke-width="1.7"><polygon points="122,9 208,53 228,141 160,176 84,176 17,141 37,53"/><polygon points="122,35 187,68 203,132 149,157 94,157 42,132 59,68"/><polygon points="122,60 165,82 179,123 140,140 104,140 65,123 79,82"/><polygon points="122,88 143,99 151,117 132,124 112,124 93,117 101,99"/><line x1="122" y1="9" x2="122" y2="106"/><line x1="208" y1="53" x2="132" y2="111"/><line x1="228" y1="141" x2="136" y2="117"/><line x1="160" y1="176" x2="126" y2="122"/><line x1="84" y1="176" x2="118" y2="122"/><line x1="17" y1="141" x2="108" y2="117"/><line x1="37" y1="53" x2="112" y2="111"/></g><g font-size="15" fill="#171716"><text x="104" y="8">炽欲</text><text x="211" y="57">比较</text><text x="211" y="148">反击</text><text x="147" y="183">优越</text><text x="43" y="183">抽离</text><text x="0" y="148">占有</text><text x="0" y="57">填补</text></g></svg>
-          <div class="figure"></div>
-        </div>
-        <div class="cover-atlas" aria-label="七座欲望圣殿插画"><img src="temple-pride.png" alt="傲慢圣殿"><img src="temple-envy.png" alt="嫉妒圣殿"><img src="temple-wrath.png" alt="愤怒圣殿"><img src="temple-sloth.png" alt="懒惰圣殿"><img src="temple-greed.png" alt="贪婪圣殿"><img src="temple-gluttony.png" alt="暴食圣殿"><img src="temple-lust.png" alt="色欲圣殿"></div>
+        <div class="journey-summary" aria-label="测试流程"><div><strong>30</strong><span>道情境题<br>凭第一反应作答</span></div><div><strong>2</strong><span>次交叉校验<br>避免单场景判断</span></div><div><strong>1</strong><span>份组合报告<br>主线 + 副倾向</span></div></div>
+        <div class="atlas-heading"><strong>七座欲望圣殿</strong><small>每张都对应一种反应</small></div>
+        <div class="cover-atlas" aria-label="七座欲望圣殿插画"><figure><img src="temple-pride.png" alt="傲慢圣殿"><figcaption>01 傲慢</figcaption></figure><figure><img src="temple-envy.png" alt="嫉妒圣殿"><figcaption>02 嫉妒</figcaption></figure><figure><img src="temple-wrath.png" alt="愤怒圣殿"><figcaption>03 愤怒</figcaption></figure><figure><img src="temple-sloth.png" alt="懒惰圣殿"><figcaption>04 懒惰</figcaption></figure><figure><img src="temple-greed.png" alt="贪婪圣殿"><figcaption>05 贪婪</figcaption></figure><figure><img src="temple-gluttony.png" alt="暴食圣殿"><figcaption>06 暴食</figcaption></figure><figure><img src="temple-lust.png" alt="色欲圣殿"><figcaption>07 色欲</figcaption></figure></div>
         <div class="access-gate"><label for="accessCode">TEST ACCESS / 测试码</label><input id="accessCode" type="text" inputmode="text" autocapitalize="characters" autocomplete="off" placeholder="输入测试码后开始"><p id="accessStatus" class="access-status">输入测试码，开启 30 扇情境之门。</p></div>
         <button class="cta" id="start">验证并开始建立档案　→</button>
         <p class="note">30 扇情境之门 · 双重交叉验证 · 约 4 分钟</p>
