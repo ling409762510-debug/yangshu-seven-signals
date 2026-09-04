@@ -73,8 +73,8 @@
     .question-bottom { display:flex; justify-content:space-between; align-items:center; font-size:13px; }
     .back { border:0; background:transparent; color:var(--muted); padding:9px 0; }
     .result { padding-bottom:26px; }
-    #results { background:#1b1114; color:#f4e9df; }
-    #results .brand { color:#d8b9a8; }
+    #results { background:#1b1114; color:#f4e9df; padding-top:46px; }
+    #results > .brand { display:none; }
     #results .result-copy { color:#eee0d6; border-color:#e7a1ae; }
     #results .note { color:#bda89f; }
     .result-card { width:100%; aspect-ratio:4/5; background:#ede6d8 var(--card-image) center/cover no-repeat; color:#281b16; border:1px solid var(--ink); position:relative; overflow:hidden; padding:22px; display:flex; flex-direction:column; box-shadow:5px 6px 0 rgba(80,54,23,.22); }
@@ -165,7 +165,7 @@
           <svg viewBox="0 0 245 185"><g fill="none" stroke="#171716" stroke-width="1.7"><polygon points="122,9 208,53 228,141 160,176 84,176 17,141 37,53"/><polygon points="122,35 187,68 203,132 149,157 94,157 42,132 59,68"/><polygon points="122,60 165,82 179,123 140,140 104,140 65,123 79,82"/><polygon points="122,88 143,99 151,117 132,124 112,124 93,117 101,99"/><line x1="122" y1="9" x2="122" y2="106"/><line x1="208" y1="53" x2="132" y2="111"/><line x1="228" y1="141" x2="136" y2="117"/><line x1="160" y1="176" x2="126" y2="122"/><line x1="84" y1="176" x2="118" y2="122"/><line x1="17" y1="141" x2="108" y2="117"/><line x1="37" y1="53" x2="112" y2="111"/></g><g font-size="15" fill="#171716"><text x="104" y="8">炽欲</text><text x="211" y="57">比较</text><text x="211" y="148">反击</text><text x="147" y="183">优越</text><text x="43" y="183">抽离</text><text x="0" y="148">占有</text><text x="0" y="57">填补</text></g></svg>
           <div class="figure"></div>
         </div>
-        <div class="cover-atlas" aria-label="七座欲望圣殿插画"><img src="欲望圣殿_01_傲慢.png" alt="傲慢圣殿"><img src="欲望圣殿_02_嫉妒.png" alt="嫉妒圣殿"><img src="欲望圣殿_03_愤怒.png" alt="愤怒圣殿"><img src="欲望圣殿_04_懒惰.png" alt="懒惰圣殿"><img src="欲望圣殿_05_贪婪.png" alt="贪婪圣殿"><img src="欲望圣殿_06_暴食.png" alt="暴食圣殿"><img src="欲望圣殿_07_色欲.png" alt="色欲圣殿"></div>
+        <div class="cover-atlas" aria-label="七座欲望圣殿插画"><img src="temple-pride.png" alt="傲慢圣殿"><img src="temple-envy.png" alt="嫉妒圣殿"><img src="temple-wrath.png" alt="愤怒圣殿"><img src="temple-sloth.png" alt="懒惰圣殿"><img src="temple-greed.png" alt="贪婪圣殿"><img src="temple-gluttony.png" alt="暴食圣殿"><img src="temple-lust.png" alt="色欲圣殿"></div>
         <button class="cta" id="start">开始建立档案　→</button>
         <p class="note">30 扇情境之门 · 双重交叉验证 · 约 4 分钟</p>
       </div>
@@ -198,7 +198,7 @@
       </article>
       <p id="resultCopy" class="result-copy"></p>
       <div class="actions no-print"><button id="copy" class="secondary">复制结果文案</button><button id="restart" class="secondary">重新测试</button></div>
-      <button id="download" class="cta no-print">下载羊皮纸结果卡（SVG）</button>
+      <button id="download" class="cta no-print">下载羊皮纸结果卡（PNG）</button>
       <section class="spectrum">
         <h2>你的七宗罪雷达图</h2><p class="sub">指数越高，代表这种反应越容易在对应情境中被触发。</p>
         <svg id="spectrumChart" class="spectrum-chart" viewBox="0 0 420 380" aria-label="七宗罪雷达图"></svg>
@@ -274,7 +274,7 @@
       withdraw:['拆成一个小动作，马上开始','告诉别人我需要一点支持','先拖着，等状态回来','直接关机，什么也不想碰'],
       possess:['说出我的不安，一起协商','提醒对方我需要清楚的交代','旁敲侧击想弄明白','必须现在知道全部细节']
     };
-    const imageAssets={pride:'欲望圣殿_01_傲慢.png',compare:'欲望圣殿_02_嫉妒.png',rage:'欲望圣殿_03_愤怒.png',withdraw:'欲望圣殿_04_懒惰.png',possess:'欲望圣殿_05_贪婪.png',fill:'欲望圣殿_06_暴食.png',desire:'欲望圣殿_07_色欲.png'};
+    const imageAssets={pride:'temple-pride.png',compare:'temple-envy.png',rage:'temple-wrath.png',withdraw:'temple-sloth.png',possess:'temple-greed.png',fill:'temple-gluttony.png',desire:'temple-lust.png'};
     let index=0, answers=[];
     const $=id=>document.getElementById(id);
     function show(name){ ['home','quiz','checkpoint','results'].forEach(id=>$(id).classList.toggle('hide',id!==name)); window.scrollTo({top:0,behavior:'instant'}); }
@@ -307,7 +307,11 @@
         const imageData=await new Promise((resolve,reject)=>{ const img=new Image(); img.onload=()=>{ const canvas=document.createElement('canvas'); canvas.width=img.naturalWidth; canvas.height=img.naturalHeight; canvas.getContext('2d').drawImage(img,0,0); resolve(canvas.toDataURL('image/png')); }; img.onerror=reject; img.src=imageAssets[active]; });
         const goat=`<g transform="translate(672 62)" fill="none" stroke="#38261d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16C1 13 2 3 10 5c5 1 4 8 1 10M32 16c9-3 8-13 0-11-5 1-4 8-1 10"/><path d="M9 13c-2 10 0 20 12 25 12-5 14-15 12-25-5-4-19-4-24 0Z"/><path d="M7 22h11m7 0h11m-18 0h7m-13-3v6m16-6v6M18 30c2 2 5 2 7 0"/><path fill="#38261d" stroke="none" d="m18 35 3 7 3-7z"/></g><text x="692" y="121" text-anchor="middle" font-family="serif" font-size="13" fill="#38261d">羊叔档案</text>`;
         const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000"><defs><linearGradient id="fade" x1="0" x2="0" y1="0" y2="1"><stop offset="44%" stop-color="#ead9bc" stop-opacity="0"/><stop offset="70%" stop-color="#ead9bc" stop-opacity=".9"/><stop offset="100%" stop-color="#ead9bc" stop-opacity=".98"/></linearGradient></defs><rect width="800" height="1000" fill="#ead9bc"/><image href="${imageData}" x="22" y="22" width="756" height="956" preserveAspectRatio="xMidYMid slice"/><rect x="22" y="22" width="756" height="956" fill="url(#fade)"/><rect x="22" y="22" width="756" height="956" fill="none" stroke="#38261d" stroke-width="2"/><text x="55" y="65" font-family="Arial,sans-serif" font-size="15" letter-spacing="3" fill="#38261d">YANGSHU / DESIRE ARCHIVE</text><text x="614" y="65" text-anchor="end" font-family="Arial,sans-serif" font-size="15" letter-spacing="3" fill="#8d3728">${esc(no)}</text>${goat}<text x="55" y="690" font-family="serif" font-size="72" letter-spacing="12" fill="#271a16">${esc(name)}</text><text x="60" y="728" font-family="Arial,sans-serif" font-size="18" letter-spacing="3" fill="#8d3728">${esc($('typeEn').textContent)}</text><line x1="55" y1="762" x2="745" y2="762" stroke="#38261d" stroke-width="2"/><text x="55" y="815" font-family="serif" font-size="30" fill="#271a16">${esc(quote[0]||'')}</text><text x="55" y="858" font-family="serif" font-size="30" fill="#271a16">${esc(quote[1]||'')}</text><text x="55" y="940" font-family="Arial,sans-serif" font-size="13" letter-spacing="2" fill="#5a4638">FOR ENTERTAINMENT &amp; SELF-REFLECTION</text><text x="745" y="940" text-anchor="end" font-family="serif" font-size="15" fill="#8d3728">${esc(name)} · 欲望圣殿</text></svg>`;
-        const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml;charset=utf-8'})); a.download='羊叔欲望圣殿_'+name+'.svg'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),500); flash('羊皮纸结果卡已下载。');
+        const cardImage=await new Promise((resolve,reject)=>{ const img=new Image(); img.onload=()=>resolve(img); img.onerror=reject; img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg); });
+        const canvas=document.createElement('canvas'); canvas.width=800; canvas.height=1000; canvas.getContext('2d').drawImage(cardImage,0,0,800,1000);
+        const png=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
+        if(!png) throw new Error('PNG export failed');
+        const a=document.createElement('a'); a.href=URL.createObjectURL(png); a.download='羊叔欲望圣殿_'+name+'.png'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),500); flash('羊皮纸结果卡已下载为 PNG 图片。');
       } catch { flash('图片读取失败，请在浏览器中重新打开测试页。'); }
     }
     $('start').onclick=()=>{index=0;answers=[];renderQuestion();show('quiz');}; $('back').onclick=()=>{if(index){index--;renderQuestion();}}; $('checkpointContinue').onclick=()=>{index++;renderQuestion();show('quiz');}; $('restart').onclick=()=>show('home'); $('copy').onclick=copyResult; $('download').onclick=downloadParchmentCard;
