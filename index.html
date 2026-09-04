@@ -1,22 +1,316 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="羊叔的图谱｜七宗罪 VS 七美德娱乐型自我觉察测试" />
-<title>羊叔的图谱｜七宗罪 VS 七美德</title>
-<script>
-(function(){
-  const files=new Set(["uncle-sheep-archivist-v1.png","share-card-archive-v2.png","deep-report-sheep-archivist.png","scene-relationship.png","scene-action.png","scene-boundary.png"]);
-  const src=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,"src");
-  Object.defineProperty(HTMLImageElement.prototype,"src",{configurable:true,get:src.get,set(v){return src.set.call(this,typeof v==="string"&&files.has(v.slice(1))?"./"+v.slice(1):v)}});
-  const patch=()=>document.querySelectorAll("img[src^=\"/\"]").forEach(i=>{const p=i.getAttribute("src");if(files.has(p.slice(1)))i.setAttribute("src","./"+p.slice(1))});
-  new MutationObserver(patch).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
-  patch();
-})();
-</script>
-<script type="module" crossorigin src="./index-Bb73DYhb.js"></script>
-<link rel="stylesheet" crossorigin href="./index-BRI9LMO_.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#efe9dc">
+  <title>暗涌档案｜七种欲望测试</title>
+  <style>
+    :root { --paper:#e8dcc4; --ink:#2a2118; --muted:#6d5d49; --red:#8d3728; --line:#a89376; --cream:#d8c6a7; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#160d0f; color:var(--ink); font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC","Noto Sans SC",Arial,sans-serif; }
+    button { font:inherit; color:inherit; cursor:pointer; }
+    .app { width:min(100%,760px); min-height:100vh; margin:auto; background:var(--paper); overflow:hidden; position:relative; }
+    .grain { position:absolute; inset:0; pointer-events:none; opacity:.28; background-image:radial-gradient(#806 0.55px,transparent .6px),radial-gradient(#9c8d71 0.45px,transparent .55px); background-position:0 0,7px 9px; background-size:13px 13px,17px 17px; mix-blend-mode:multiply; }
+    .screen { position:relative; min-height:100vh; padding:26px 24px 34px; display:flex; flex-direction:column; }
+    .hide { display:none!important; }
+    .brand { display:flex; justify-content:space-between; align-items:center; font-family:Arial,sans-serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; }
+    .yangshu { display:flex; align-items:center; gap:8px; color:inherit; font-family:"Songti SC",serif; font-size:11px; letter-spacing:1px; line-height:1.15; text-align:left; }
+    .yangshu svg { width:37px; height:37px; overflow:visible; }
+    .yangshu .horn,.yangshu .face,.yangshu .glasses { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .yangshu .beard { fill:currentColor; }
+    .seal { border:1px solid var(--red); color:var(--red); border-radius:50%; width:44px; height:44px; display:grid; place-items:center; transform:rotate(-8deg); font-family:"Songti SC",serif; letter-spacing:0; font-size:13px; }
+    .home-main { flex:1; display:flex; flex-direction:column; justify-content:center; padding:26px 0 14px; }
+    .eyebrow { color:var(--red); font-family:Arial,sans-serif; letter-spacing:2.4px; font-size:11px; margin:0 0 15px; }
+    h1 { font-size:clamp(42px,9vw,70px); line-height:.98; font-weight:500; letter-spacing:5px; margin:0; }
+    h1 span { display:block; font-size:.42em; letter-spacing:9px; margin:14px 0 0 8px; font-family:Arial,sans-serif; font-weight:400; }
+    .home-copy { margin:34px 0 26px; font-size:18px; line-height:1.9; max-width:390px; }
+    .diagram { height:185px; position:relative; margin:8px 0 24px; }
+    .diagram svg { position:absolute; left:53%; transform:translateX(-50%); width:245px; height:185px; overflow:visible; }
+    .diagram .figure { position:absolute; left:calc(50% - 133px); bottom:4px; width:92px; height:136px; border:2px solid var(--ink); border-radius:48% 48% 40% 42%; background:var(--paper); transform:rotate(9deg); }
+    .diagram .figure:before { content:""; position:absolute; width:61px; height:65px; left:12px; top:-41px; border:2px solid var(--ink); border-radius:49% 50% 47% 46%; background:var(--paper); }
+    .diagram .figure:after { content:"×  ×"; letter-spacing:7px; position:absolute; left:16px; top:-13px; font-family:Arial,sans-serif; font-size:15px; }
+    .cta { border:0; background:var(--ink); color:var(--paper); padding:17px 20px; width:100%; font-weight:600; font-size:16px; letter-spacing:1px; box-shadow:4px 4px 0 var(--red); transition:transform .16s,box-shadow .16s; }
+    .cta:hover { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--red); }
+    .note { color:var(--muted); font-size:12px; line-height:1.7; margin:18px 0 0; text-align:center; }
+    #home,#quiz { background:#1b1114; color:#f4e9df; }
+    #home .brand,#quiz .progress-line,#quiz .question-bottom { color:#d8b9a8; }
+    #home .eyebrow,#quiz .dimension { color:#e9a0ae; }
+    #home .seal { color:#e9a0ae; border-color:#e9a0ae; }
+    #home .home-copy,#home .note { color:#c7afa4; }
+    #home .diagram { filter:sepia(.4) saturate(.55) hue-rotate(295deg); opacity:.92; }
+    .cover-atlas { display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin:0 0 20px; padding:7px; border:1px solid #5d4149; background:rgba(255,255,255,.025); }
+    .cover-atlas img { width:100%; aspect-ratio:.74; object-fit:cover; object-position:center top; border:1px solid rgba(226,184,154,.55); filter:sepia(.15) saturate(.75); }
+    #home .cta { background:#e7a1ae; color:#241317; box-shadow:4px 4px 0 #765047; }
+    #quiz .progress-line { border-color:#60444b; }
+    #quiz .progress-track { background:#3a252a; }
+    #quiz .progress-fill { background:#e79cac; }
+    #quiz .option { border-color:#563941; color:#f4e9df; background:rgba(255,255,255,.02); }
+    #quiz .option:hover,#quiz .option.selected { border-color:#e79cac; background:#43262e; transform:translateX(4px); }
+    #quiz .back { color:#c7afa4; }
+    .question-art { display:flex; align-items:center; gap:14px; margin:0 0 20px; }
+    .question-art img { width:54px; height:54px; object-fit:cover; border-radius:50%; border:1px solid #e79cac; filter:saturate(.7) contrast(1.05); }
+    .question-art span { color:#d8b9a8; font-family:Arial,sans-serif; font-size:10px; letter-spacing:2px; line-height:1.8; }
+    #checkpoint { background:#1b1114; color:#f4e9df; }
+    #checkpoint .brand { color:#d8b9a8; }
+    .checkpoint-main { flex:1; display:flex; flex-direction:column; justify-content:center; padding:30px 0; }
+    .checkpoint-main h2 { font-size:clamp(31px,7vw,44px); font-weight:500; line-height:1.25; margin:0 0 18px; letter-spacing:2px; }
+    .checkpoint-main > p:not(.eyebrow):not(.checkpoint-note) { color:#d2bcb2; line-height:1.85; font-size:16px; margin:0 0 22px; max-width:430px; }
+    .checkpoint-art { height:180px; border:1px solid #865d63; overflow:hidden; position:relative; margin:5px 0 15px; }
+    .checkpoint-art:after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(27,17,20,.1),rgba(27,17,20,.54)); }
+    .checkpoint-art img { width:100%; height:100%; object-fit:cover; object-position:center 28%; filter:saturate(.75) contrast(1.05); }
+    .checkpoint-note { color:#e7a1ae; line-height:1.7; font-size:13px; margin:0; }
+    #checkpoint .cta { background:#e7a1ae; color:#241317; box-shadow:4px 4px 0 #765047; }
+    .progress-line { display:flex; justify-content:space-between; align-items:center; font-family:Arial,sans-serif; font-size:11px; letter-spacing:1px; border-bottom:1px solid var(--line); padding-bottom:13px; }
+    .progress-track { height:3px; background:#dad3c6; margin:17px 0 0; }
+    .progress-fill { height:100%; background:var(--red); transition:width .25s ease; }
+    .question-wrap { flex:1; display:flex; flex-direction:column; justify-content:center; padding:32px 0; }
+    .dimension { color:var(--red); letter-spacing:3px; font-size:13px; margin:0 0 20px; }
+    .question { font-size:clamp(25px,6vw,37px); line-height:1.45; font-weight:500; margin:0 0 38px; letter-spacing:1px; }
+    .options { display:grid; gap:11px; }
+    .option { text-align:left; background:transparent; border:1px solid var(--line); padding:16px 17px; font-size:16px; transition:.15s; }
+    .option:hover,.option.selected { border-color:var(--ink); background:#e6dece; transform:translateX(4px); }
+    .question-bottom { display:flex; justify-content:space-between; align-items:center; font-size:13px; }
+    .back { border:0; background:transparent; color:var(--muted); padding:9px 0; }
+    .result { padding-bottom:26px; }
+    #results { background:#1b1114; color:#f4e9df; }
+    #results .brand { color:#d8b9a8; }
+    #results .result-copy { color:#eee0d6; border-color:#e7a1ae; }
+    #results .note { color:#bda89f; }
+    .result-card { width:100%; aspect-ratio:4/5; background:#ede6d8 var(--card-image) center/cover no-repeat; color:#281b16; border:1px solid var(--ink); position:relative; overflow:hidden; padding:22px; display:flex; flex-direction:column; box-shadow:5px 6px 0 rgba(80,54,23,.22); }
+    .result-card:after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(to bottom,rgba(239,226,199,.08) 0%,rgba(239,226,199,.05) 38%,rgba(239,226,199,.94) 65%,rgba(239,226,199,.98) 100%); }
+    .card-top,.card-title,.quote,.card-footer,.card-yangshu { position:relative; z-index:1; }
+    .card-top { display:flex; justify-content:space-between; font-family:Arial,sans-serif; font-size:9px; letter-spacing:1.4px; }
+    .card-no { color:var(--red); }
+    .card-title { position:absolute; left:22px; bottom:130px; display:flex; align-items:flex-end; gap:9px; }
+    .card-title small { color:var(--red); font-family:Arial,sans-serif; letter-spacing:1.4px; margin-bottom:8px; }
+    .card-title strong { color:#281b16; font-size:36px; font-weight:700; letter-spacing:4px; line-height:1; text-shadow:0 1px 0 #f5e7c8; }
+    .card-title small { color:#8d3728; font-weight:700; text-shadow:0 1px 0 #f5e7c8; }
+    .result-visual { display:none; }
+    #radar { position:absolute; width:112%; height:112%; left:-6%; top:-6%; overflow:visible; }
+    .scribble { position:absolute; left:8%; bottom:12%; width:96px; height:126px; border:2px solid var(--ink); border-radius:45% 48% 30% 38%; background:#ede6d8; transform:rotate(10deg); }
+    .scribble:before { content:""; position:absolute; left:15px; top:-54px; width:67px; height:70px; border:2px solid var(--ink); background:#ede6d8; border-radius:49%; }
+    .scribble:after { content:"⊘"; position:absolute; left:29px; top:-38px; font-size:30px; font-family:Arial,sans-serif; }
+    .quote { position:absolute; left:22px; right:22px; bottom:54px; color:#35251d; border-top:1px solid #4b3629; padding-top:12px; min-height:58px; font-size:16px; font-weight:600; line-height:1.48; letter-spacing:.7px; text-shadow:0 1px 0 rgba(255,247,224,.72); }
+    .card-footer { position:absolute; left:22px; right:22px; bottom:14px; color:#5a4032; display:flex; align-items:end; justify-content:space-between; font-family:Arial,sans-serif; font-size:8px; font-weight:700; letter-spacing:1px; }
+    .card-yangshu { position:absolute; right:22px; top:44px; display:flex; align-items:center; gap:4px; color:#3d2b22; font-family:"Songti SC",serif; font-size:8px; letter-spacing:1px; line-height:1.15; text-align:left; text-shadow:0 1px 2px #f4e8cc; }
+    .card-yangshu svg { width:27px; height:27px; }
+    .card-yangshu .horn,.card-yangshu .face,.card-yangshu .glasses { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .card-yangshu .beard { fill:currentColor; }
+    .stamp { width:40px; height:40px; border:1px solid var(--red); color:var(--red); border-radius:50%; display:grid; place-items:center; font-family:"Songti SC",serif; font-size:12px; transform:rotate(-10deg); letter-spacing:0; }
+    .result-copy { border-left:3px solid var(--red); margin:27px 2px 22px; padding:2px 0 2px 15px; font-size:16px; line-height:1.85; }
+    .spectrum { color:#f4e9df; margin:3px -24px 0; padding:27px 24px 30px; border-top:1px solid #5b4147; border-bottom:1px solid #5b4147; }
+    .spectrum h2 { color:#e9a0ae; font-size:21px; letter-spacing:1px; margin:0 0 7px; }
+    .spectrum .sub { color:#cbb5ad; font-size:14px; line-height:1.65; margin:0 0 12px; }
+    .spectrum-chart { width:100%; height:380px; margin:0; display:block; }
+    .sin-bars { display:grid; grid-template-columns:1fr; gap:13px; margin-top:5px; }
+    .sin-bar { display:grid; grid-template-columns:43px 1fr 38px; gap:10px; align-items:center; }
+    .sin-bar img { width:43px; height:43px; object-fit:cover; border:1px solid #9f7864; border-radius:50%; }
+    .sin-bar-main { min-width:0; }
+    .sin-bar-head { display:flex; justify-content:space-between; color:#f3e6de; font-size:15px; margin-bottom:6px; }
+    .sin-bar-track { height:7px; background:#442d33; overflow:hidden; }
+    .sin-bar-track span { display:block; height:100%; background:linear-gradient(90deg,#b34d65,#efa2af); }
+    .sin-bar > strong { color:#efa2af; font-size:16px; text-align:right; }
+    .spectrum-note { color:#c8b2aa; font-size:13px; line-height:1.75; margin:21px 0 0; }
+    .profile-report { margin:30px 0 0; }
+    .report-heading { display:grid; grid-template-columns:1fr auto; align-items:end; gap:4px 14px; margin:0 0 15px; }
+    .report-heading p { grid-column:1/-1; color:#e7a1ae; font-family:Arial,sans-serif; font-size:10px; letter-spacing:2px; margin:0; }
+    .report-heading h2 { color:#f2e3da; font-size:25px; margin:0; letter-spacing:1px; }
+    .report-heading span { color:#bda89f; font-size:11px; padding-bottom:4px; }
+    .core-card { display:grid; grid-template-columns:112px 1fr; gap:15px; padding:12px; background:#e9d8b9; color:#2c1f19; border:1px solid #c49a72; box-shadow:4px 4px 0 #6c3d3e; }
+    .core-card > img { width:112px; height:177px; object-fit:cover; object-position:center top; border:1px solid #7b5842; }
+    .core-copy { display:flex; flex-direction:column; min-width:0; }
+    .card-kicker { color:#8d3728; font-family:Arial,sans-serif; font-size:10px; font-weight:700; letter-spacing:1.5px; margin:0 0 8px; }
+    .core-copy h3 { font-size:23px; line-height:1.25; margin:0 0 9px; letter-spacing:.5px; }
+    .core-copy > p:not(.card-kicker) { font-size:14px; line-height:1.75; margin:0; }
+    .core-tag { margin-top:auto; padding-top:9px; border-top:1px solid #a67a5a; }
+    .core-tag span { display:block; color:#72513e; font-size:11px; margin-bottom:3px; }
+    .core-tag b { font-size:15px; }
+    .insight-grid { display:grid; gap:10px; margin:14px 0; }
+    .insight-card { background:#2b1a1e; border:1px solid #68464b; padding:17px 16px; box-shadow:inset 3px 0 0 #b85063; }
+    .insight-index { color:#e7a1ae; font-family:Arial,sans-serif; font-size:10px; letter-spacing:1.5px; }
+    .insight-card h3 { color:#f4e8df; font-size:18px; margin:9px 0 7px; }
+    .insight-card p { color:#d5c0b7; font-size:14px; line-height:1.8; margin:0; }
+    .ritual-card { background:#e9d8b9; color:#2c1f19; padding:20px 18px; border:1px solid #c49a72; box-shadow:4px 4px 0 #6c3d3e; }
+    .ritual-card h3 { font-size:21px; margin:0 0 8px; }
+    .ritual-card > div > p:not(.card-kicker) { font-size:14px; line-height:1.75; margin:0; }
+    .ritual-card ol { margin:17px 0 0; padding:0; list-style:none; display:grid; gap:7px; counter-reset:day; }
+    .ritual-card li { counter-increment:day; border-top:1px solid #c59c78; padding:8px 0 0 32px; position:relative; font-size:13px; line-height:1.6; }
+    .ritual-card li:before { content:"0" counter(day); position:absolute; left:0; top:8px; color:#8d3728; font-family:Arial,sans-serif; font-size:11px; font-weight:700; }
+    .resource-card { margin-top:14px; padding:18px; border:1px solid #82605b; background:linear-gradient(115deg,#3b2428,#211418); }
+    .resource-card span { color:#e7a1ae; font-size:12px; }
+    .resource-card h3 { color:#f2e3da; font-size:24px; margin:7px 0; }
+    .resource-card p { color:#d5c0b7; font-size:14px; line-height:1.8; margin:0; }
+    .actions { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .secondary { border:1px solid var(--ink); background:transparent; padding:15px 8px; font-size:14px; }
+    .result .cta { margin-top:13px; }
+    .detail { border-top:1px solid var(--line); margin-top:27px; padding-top:22px; }
+    .detail h2 { font-size:16px; margin:0 0 12px; font-weight:500; letter-spacing:2px; }
+    .detail p { font-size:15px; line-height:1.9; margin:0 0 19px; }
+    .toast { position:fixed; bottom:24px; left:50%; transform:translate(-50%,120px); color:var(--paper); background:var(--ink); padding:12px 16px; font-size:13px; transition:transform .25s; z-index:10; }
+    .toast.on { transform:translate(-50%,0); }
+    @media (min-width:620px) { .screen { padding:32px 54px 42px; } .result-card { max-width:540px; margin:auto; } .spectrum { margin-left:-54px; margin-right:-54px; padding-left:54px; padding-right:54px; } }
+    @media print { body { background:white; } .app { width:100%; } .no-print { display:none!important; } .result-card { margin:auto; max-height:100vh; } }
+  </style>
 </head>
-<body><div id="root"></div></body>
+<body>
+  <main class="app"><div class="grain"></div>
+    <section id="home" class="screen">
+      <header class="brand"><div class="yangshu" aria-label="羊叔"><svg viewBox="0 0 42 42" aria-hidden="true"><path class="horn" d="M13 15C5 12 6 3 13 5c4 1 3 7 1 9M29 15c8-3 7-12 0-10-4 1-3 7-1 9"/><path class="face" d="M12 13c-2 9 0 19 9 23 9-4 11-14 9-23-4-3-14-3-18 0Z"/><path class="glasses" d="M10 21h9m4 0h9m-13 0h4m-10-2v5m14-5v5"/><path class="face" d="M18 29c2 2 4 2 6 0"/><path class="beard" d="m18 34 3 6 3-6z"/></svg><span>羊叔<br>YANG SHU</span></div><span class="seal">暗涌<br>013</span></header>
+      <div class="home-main">
+        <p class="eyebrow">01 / 十四维人性光谱 · 娱乐型自我探索</p>
+        <h1>七宗罪<br>七美德<span>YOUR SPECTRUM</span></h1>
+        <p class="home-copy">看见会把你推向失衡的本能，<br>也看见你可以拿回来的选择权。</p>
+        <div class="diagram" aria-hidden="true">
+          <svg viewBox="0 0 245 185"><g fill="none" stroke="#171716" stroke-width="1.7"><polygon points="122,9 208,53 228,141 160,176 84,176 17,141 37,53"/><polygon points="122,35 187,68 203,132 149,157 94,157 42,132 59,68"/><polygon points="122,60 165,82 179,123 140,140 104,140 65,123 79,82"/><polygon points="122,88 143,99 151,117 132,124 112,124 93,117 101,99"/><line x1="122" y1="9" x2="122" y2="106"/><line x1="208" y1="53" x2="132" y2="111"/><line x1="228" y1="141" x2="136" y2="117"/><line x1="160" y1="176" x2="126" y2="122"/><line x1="84" y1="176" x2="118" y2="122"/><line x1="17" y1="141" x2="108" y2="117"/><line x1="37" y1="53" x2="112" y2="111"/></g><g font-size="15" fill="#171716"><text x="104" y="8">炽欲</text><text x="211" y="57">比较</text><text x="211" y="148">反击</text><text x="147" y="183">优越</text><text x="43" y="183">抽离</text><text x="0" y="148">占有</text><text x="0" y="57">填补</text></g></svg>
+          <div class="figure"></div>
+        </div>
+        <div class="cover-atlas" aria-label="七座欲望圣殿插画"><img src="欲望圣殿_01_傲慢.png" alt="傲慢圣殿"><img src="欲望圣殿_02_嫉妒.png" alt="嫉妒圣殿"><img src="欲望圣殿_03_愤怒.png" alt="愤怒圣殿"><img src="欲望圣殿_04_懒惰.png" alt="懒惰圣殿"><img src="欲望圣殿_05_贪婪.png" alt="贪婪圣殿"><img src="欲望圣殿_06_暴食.png" alt="暴食圣殿"><img src="欲望圣殿_07_色欲.png" alt="色欲圣殿"></div>
+        <button class="cta" id="start">开始建立档案　→</button>
+        <p class="note">30 扇情境之门 · 双重交叉验证 · 约 4 分钟</p>
+      </div>
+    </section>
+
+    <section id="quiz" class="screen hide">
+      <div class="no-print"><div class="progress-line"><span id="counter">01 / 28</span><span>请凭第一反应选择</span></div><div class="progress-track"><div id="progress" class="progress-fill"></div></div></div>
+      <div class="question-wrap">
+        <div class="question-art"><img id="questionArt" alt="欲望圣殿插画"><span id="doorMark">THE FIRST DOOR<br>选择你的本能反应</span></div>
+        <p id="dimension" class="dimension"></p><h2 id="question" class="question"></h2><div id="options" class="options"></div>
+      </div>
+      <div class="question-bottom no-print"><button id="back" class="back">← 上一题</button><span>暗涌档案 / 013</span></div>
+    </section>
+
+    <section id="checkpoint" class="screen hide">
+      <header class="brand"><div class="yangshu"><svg viewBox="0 0 42 42" aria-hidden="true"><path class="horn" d="M13 15C5 12 6 3 13 5c4 1 3 7 1 9M29 15c8-3 7-12 0-10-4 1-3 7-1 9"/><path class="face" d="M12 13c-2 9 0 19 9 23 9-4 11-14 9-23-4-3-14-3-18 0Z"/><path class="glasses" d="M10 21h9m4 0h9m-13 0h4m-10-2v5m14-5v5"/><path class="face" d="M18 29c2 2 4 2 6 0"/><path class="beard" d="m18 34 3 6 3-6z"/></svg><span>羊叔<br>YANG SHU</span></div><span id="checkpointCount">10 / 30</span></header>
+      <div class="checkpoint-main"><p id="checkpointEyebrow" class="eyebrow">第一层线索已收集</p><h2 id="checkpointTitle"></h2><p id="checkpointCopy"></p><div class="checkpoint-art"><img id="checkpointImage" alt="欲望圣殿局部插画"></div><p class="checkpoint-note">接下来的题目会换成不同场景，确认你的反应是否稳定。</p></div>
+      <button id="checkpointContinue" class="cta">继续走进下一扇门　→</button>
+    </section>
+
+    <section id="results" class="screen result hide">
+      <div class="brand no-print"><span>UNDERTOW ARCHIVES</span><span id="resultNo">ARCHIVE 013</span></div>
+      <article id="resultCard" class="result-card">
+        <div class="card-top"><span>UNDERTOW / DESIRE PROFILE</span><span id="cardNo" class="card-no">NO. 013</span></div>
+        <div class="card-yangshu" aria-label="羊叔档案标识"><svg viewBox="0 0 42 42" aria-hidden="true"><path class="horn" d="M13 15C5 12 6 3 13 5c4 1 3 7 1 9M29 15c8-3 7-12 0-10-4 1-3 7-1 9"/><path class="face" d="M12 13c-2 9 0 19 9 23 9-4 11-14 9-23-4-3-14-3-18 0Z"/><path class="glasses" d="M10 21h9m4 0h9m-13 0h4m-10-2v5m14-5v5"/><path class="face" d="M18 29c2 2 4 2 6 0"/><path class="beard" d="m18 34 3 6 3-6z"/></svg><span>羊叔<br>欲望档案</span></div>
+        <div class="card-title"><strong id="typeName">比较</strong><small id="typeEn">THE COMPARER</small></div>
+        <div class="result-visual"><svg id="radar" viewBox="0 0 400 330" aria-label="七维欲望雷达图"></svg><div class="scribble"></div></div>
+        <div id="quote" class="quote"></div>
+        <div class="card-footer"><span>FOR ENTERTAINMENT & SELF-REFLECTION</span><span class="stamp">欲望<br>档案</span></div>
+      </article>
+      <p id="resultCopy" class="result-copy"></p>
+      <div class="actions no-print"><button id="copy" class="secondary">复制结果文案</button><button id="restart" class="secondary">重新测试</button></div>
+      <button id="download" class="cta no-print">下载羊皮纸结果卡（SVG）</button>
+      <section class="spectrum">
+        <h2>你的七宗罪雷达图</h2><p class="sub">指数越高，代表这种反应越容易在对应情境中被触发。</p>
+        <svg id="spectrumChart" class="spectrum-chart" viewBox="0 0 420 380" aria-label="七宗罪雷达图"></svg>
+        <div id="sinBars" class="sin-bars" aria-label="七宗罪分数明细"></div>
+        <p class="spectrum-note">这不是人格标签或道德判定，只是帮你看见：在压力、关系和比较出现时，自己更容易走向哪一种本能反应。</p>
+      </section>
+      <section class="profile-report">
+        <div class="report-heading"><p>YANGSHU / FIELD REPORT 01</p><h2>你的欲望档案</h2><span>以下内容用于娱乐与自我觉察</span></div>
+        <article class="core-card">
+          <img id="readingImage" alt="主罪圣殿插画">
+          <div class="core-copy"><p class="card-kicker">你真正想守住的</p><h3 id="coreNeed"></h3><p id="coreNeedCopy"></p><div class="core-tag"><span>主罪背后的需要</span><b id="needKeyword"></b></div></div>
+        </article>
+        <div class="insight-grid">
+          <article class="insight-card"><span class="insight-index">01 / TRIGGER</span><h3>你的失衡时刻</h3><p id="trigger"></p></article>
+          <article class="insight-card"><span class="insight-index">02 / RELATIONSHIP</span><h3>关系里的显形</h3><p id="relationship"></p></article>
+          <article class="insight-card"><span class="insight-index">03 / BLIND SPOT</span><h3>最容易忽略的事</h3><p id="blindSpot"></p></article>
+        </div>
+        <article class="ritual-card"><div><p class="card-kicker">7 DAY BALANCE RITUAL</p><h3>给你的 7 日平衡练习</h3><p id="action"></p></div><ol id="ritualSteps"></ol></article>
+        <article class="resource-card"><span>你可以调用的资源</span><h3 id="virtueName"></h3><p id="virtueCopy"></p></article>
+      </section>
+      <p class="note">本测试用于娱乐和自我觉察，不构成心理诊断或建议。</p>
+    </section>
+  </main>
+  <div id="toast" class="toast">已复制，可以去晒结果了。</div>
+  <script>
+    const types = {
+      desire:{name:'色欲', en:'THE SEEKER', label:'渴望被看见', quote:'你想要的未必是靠近。\n你想确认：自己仍然足够让人着迷。', trigger:'关系忽然降温、回应变少，或你感到自己不再是对方目光的中心。', action:'在想要追问或证明自己之前，先写下：我此刻真正需要的是被确认，还是被好好回应？'},
+      fill:{name:'暴食', en:'THE FILLER', label:'习惯填满空白', quote:'你不是贪心。\n你只是很难和空白待在一起。', trigger:'疲惫、失落、独处的夜晚，或一件事结束之后没有马上出现下一件事。', action:'给空白留十分钟：不下单、不刷屏、不找人。感受它，而不是立刻填掉它。'},
+      compare:{name:'嫉妒', en:'THE COMPARER', label:'对差距很敏感', quote:'你羡慕的从来不只是她。\n是那个仿佛毫不费力就被选择的自己。', trigger:'看见同龄人的关系、外貌、进展或被认可的瞬间。', action:'把“她有什么”换成“我想要什么”。差距只有被翻译成愿望，才有出口。'},
+      rage:{name:'暴怒', en:'THE DEFENDER', label:'边界感很锋利', quote:'你生气的速度很快。\n因为你早就学会，软弱经常换不来被尊重。', trigger:'被轻视、被命令、被敷衍，或旧的委屈被再次碰到。', action:'先说事实，再说感受，最后提要求。让边界是清楚的，而不是爆炸的。'},
+      pride:{name:'傲慢', en:'THE UNREACHABLE', label:'不愿轻易示弱', quote:'你不是不需要谁。\n你只是害怕需要这件事，让你显得不够完整。', trigger:'自己做得不够好、需要求助，或有人看见你的脆弱。', action:'选一件小事，请一个可靠的人帮忙。你不会因为被接住而变小。'},
+      withdraw:{name:'懒惰', en:'THE DRIFTER', label:'擅长情绪断电', quote:'你看起来什么都无所谓。\n其实只是累到，不想再解释自己。', trigger:'任务堆积、争执持续、情绪强度过高，或你觉得怎么做都不对。', action:'别急着解决全部。只完成一个最小动作：洗澡、回一条消息，或走出房间五分钟。'},
+      possess:{name:'贪婪', en:'THE KEEPER', label:'害怕失去确定性', quote:'你想抓住的不是人或东西。\n你想抓住的是“不会被丢下”的证据。', trigger:'对方态度暧昧、计划有变、关系没有明确答案，或东西开始失控。', action:'把“你会不会离开”换成“我现在需要怎样的确定”。先照顾自己的不安。'}
+    };
+    const reportProfiles={
+      desire:{need:'你想被坚定地看见',needCopy:'你在意的不是短暂的关注，而是“我依然值得被选择”的确认。',relationship:'当回应减少时，你可能会用试探、展示或突然靠近来确认自己仍在对方心里。',blind:'把别人的暂时沉默，当成自己失去魅力的证据。',virtue:'贞洁不是压抑渴望，而是让靠近建立在尊重、边界与自我完整之上。',ritual:['今天不主动试探任何人，记录那股冲动出现的时刻。','给自己一个不需要被看见的快乐安排。','把“我想被回应”说成一句清楚的请求。','删除一条只为换回应而发的内容。','做一件让身体舒服的小事，注意力回到自己。','写下三件不依赖他人评价也成立的优点。','选一次关系，练习不追问也能安稳地等待。']},
+      fill:{need:'你想让自己重新感到“够了”',needCopy:'填满不是问题；问题是当空白一出现，你只能立刻用更多东西盖住它。',relationship:'你可能用频繁聊天、消费、聚会或不断制造计划，避开独处时真正浮现的情绪。',blind:'以为再多一点就会安心，结果却越来越听不见自己的需要。',virtue:'节制不是少拥有，而是能分辨：我是在享受，还是在躲避。',ritual:['每天留十分钟不刷屏、不下单、不找人。','情绪来时先喝水，再决定要不要满足冲动。','清理一个让你感到负担的购物车或待办。','把一次“想填满”换成一顿认真吃完的饭。','给今天的快乐标注来源：滋养还是麻痹。','睡前写下今天已经足够的三件事。','安排半天低刺激时间，观察自己是否更松一点。']},
+      compare:{need:'你想拥有属于自己的坐标',needCopy:'你并不只是羡慕别人；你在找一条证明自己也能抵达的路。',relationship:'别人的好消息会让你突然沉默、挑剔，或急着拿出自己的成绩来平衡。',blind:'盯着别人的进度条时，忘了问自己真正想要哪一种生活。',virtue:'仁爱不是要求你无条件快乐，而是允许别人的光存在，也允许自己的路不同。',ritual:['写下一件别人拥有、而你确实欣赏的东西。','把它翻译成自己的一个具体愿望。','今天不查看一个容易引发比较的账号。','完成一件只和自己昨天相比的小事。','真诚祝福一个人，不必发出去。','列出你已经拥有却常常忽略的资源。','为自己定一个不公开、不比较的小目标。']},
+      rage:{need:'你想确认自己的边界仍被尊重',needCopy:'愤怒往往不是第一层情绪；它在替你保护被轻视、被忽略或被越过的部分。',relationship:'你可能先提高音量、切断对话，之后才发现自己真正想说的是“这让我受伤”。',blind:'以为只有足够强硬，别人才能认真对待你的感受。',virtue:'耐心不是忍耐伤害，而是在说边界前，让自己拥有选择语气的余地。',ritual:['情绪升起时先离开现场九十秒。','把“你总是”改写成“当你这样做时，我会”。','记录一次没有爆发却仍守住边界的时刻。','删掉一条正在气头上的消息，十分钟后再看。','做一次让身体降温的运动或散步。','练习提出一个具体要求，而不是只表达不满。','回看本周：哪一次愤怒在替你保护重要的东西？']},
+      pride:{need:'你想保住自己的尊严与完整',needCopy:'你不是不需要帮助；你担心一旦承认不足，自己就不再值得被尊重。',relationship:'被纠正时你可能迅速解释、抽离，或者把脆弱藏进“我没事”里。',blind:'把接纳建议误听成否定自我。',virtue:'谦卑不是缩小自己，而是允许事实、他人与自己一起变得更完整。',ritual:['今天向一个人问一个真问题，不急着证明自己。','收到建议时，先重复一遍对方真正说了什么。','承认一件小失误，不附带解释。','请别人帮一个你其实能自己做的微小任务。','记录一次求助后没有失去尊严的经验。','写下你愿意继续学习的一件事。','对一个支持过你的人说一次具体的谢谢。']},
+      withdraw:{need:'你想拥有可以安全停下来的空间',needCopy:'抽离不是不在乎，而是当负荷超过上限时，你的系统先替你按下暂停。',relationship:'你可能突然不回消息、拖延或变得冷淡，让别人很难知道你其实已经很累。',blind:'等到完全有力气才开始，于是把恢复也一并推迟。',virtue:'勤勉不是逼迫自己，而是用足够小的行动重新接上生活。',ritual:['从最小的一件事开始，只做两分钟。','回复一条不需要完美措辞的消息。','把今天的任务减到三项以内。','告诉一个人：我不是不在乎，我需要缓一缓。','走出房间五分钟，让身体先动起来。','完成一件拖延的小事后立刻停止，不加码。','写下下周最值得保留的一项节奏。']},
+      possess:{need:'你想确信自己不会被轻易丢下',needCopy:'你抓紧的不是某个人或某件事，而是一种不会突然失去的确定感。',relationship:'不确定出现时，你可能追问、反复确认、想替关系提前做决定。',blind:'把“我需要安全感”误写成“我必须掌控全部细节”。',virtue:'慷慨不是放弃在乎，而是在爱与拥有里给彼此留出呼吸的空间。',ritual:['今天区分一次：事实是什么，我脑中补充的故事是什么。','把一个追问换成清楚表达自己的需要。','给一段关系留出一小时不确认的空白。','做一件只为自己安排、不等待别人配合的事。','写下三种能让你感到稳定的非他人来源。','练习接受一次计划变化，并为自己重新安排。','回顾本周：我在哪一次松手后，反而更安心？']}
+    };
+    const baseQuestions = [
+      ['desire','当我感觉自己不再被关注时，会忍不住做点什么重新吸引目光。'],['fill','心里空落落时，我常用吃、买、刷内容或约人让自己好受一点。'],['compare','我很难完全不在意，和自己条件相近的人后来过得怎样。'],['rage','被冒犯时，我宁愿场面难看，也不想显得好欺负。'],['pride','即使很难，我也不太愿意让别人看见自己无能为力。'],['withdraw','压力大到一定程度，我会突然什么都不想做，也不想回复任何人。'],['possess','关系里一旦没有明确回应，我会反复琢磨对方是不是变了。'],
+      ['desire','我会因为“被需要”而感觉自己很有价值。'],['fill','我常在事情还没结束前，就急着为自己准备下一个奖赏。'],['compare','别人得到我也想要的东西时，我的第一反应常常不是替他高兴。'],['rage','我对语气、敷衍和不尊重很敏感，而且很难装作没事。'],['pride','我会更愿意自己消化问题，而不是主动开口求助。'],['withdraw','当事情不按预期发展，我容易拖延，像是暂时把自己关机。'],['possess','我不喜欢重要的人或物脱离我的掌握。'],
+      ['desire','我会在意，自己在别人眼中是不是依然有吸引力。'],['fill','即使已经够了，我也会觉得再多一点才安心。'],['compare','我会下意识计算：为什么他比我更轻易得到这些？'],['rage','我积累很久的不满，常会在一个很小的引爆点突然爆出来。'],['pride','被指出问题时，我第一反应是解释自己为什么没错。'],['withdraw','情绪太复杂时，我会变得冷淡，好像那件事和我无关。'],['possess','我会想知道重要的人正在做什么、和谁在一起。'],
+      ['desire','我会把一次被忽略，理解成自己是不是失去了魅力。'],['fill','我不喜欢无所事事，那会让我觉得自己被掏空。'],['compare','即使我过得不错，也会被“别人更好”这件事刺到。'],['rage','我不喜欢忍让；我的底线被踩到，就会立刻反击。'],['pride','我不太能接受自己平庸、失败或被别人超越。'],['withdraw','有些事情我不是不在乎，只是没有力气再投入。'],['possess','越在乎的人或事，我越容易想替它做决定。']
+    ];
+    const crossPairs={desire:'possess',fill:'withdraw',compare:'pride',rage:'pride',pride:'compare',withdraw:'fill',possess:'desire'};
+    const calibrationQuestions=[
+      {key:'rage',scene:'公开讨论中，有人用轻慢的语气否定了你的观点。你会？',options:['先把事实说清楚，再决定要不要继续讨论','承认不舒服，但先不让现场失控','立刻开始反驳，证明对方错了','让对方知道：他不该这样对我'],scoring:[{rage:0,pride:0,compare:0},{rage:1,pride:1,compare:0},{rage:2,pride:2,compare:1},{rage:3,pride:3,compare:2}]},
+      {key:'possess',scene:'重要的人临时取消了原本和你的安排，只说“晚点解释”。你会？',options:['先安排好自己，等对方有空再谈','告诉对方我会不安，希望约个具体时间','不断猜测原因，想从细节确认发生了什么','必须马上知道全部，否则什么也做不了'],scoring:[{possess:0,desire:0,withdraw:0},{possess:1,desire:1,withdraw:0},{possess:2,desire:2,withdraw:1},{possess:3,desire:3,withdraw:2}]}
+    ];
+    const questions=[...baseQuestions.map(([key,text])=>({key,text})),...calibrationQuestions];
+    const dimensionNames={desire:'色欲 / 想被看见',fill:'暴食 / 想填满空白',compare:'嫉妒 / 对差距敏感',rage:'暴怒 / 边界锋利',pride:'傲慢 / 不愿示弱',withdraw:'懒惰 / 情绪断电',possess:'贪婪 / 渴望确定'};
+    const virtues={pride:'谦卑',compare:'仁爱',rage:'耐心',withdraw:'勤勉',possess:'慷慨',fill:'节制',desire:'贞洁'};
+    const scenes={
+      desire:['聚会结束后，TA没有像往常一样单独找你说话。','你发出的照片没有等到那个最在意的人回应。','关系里，对方最近总在忙，回复变得很慢。','有人明显在关注别人，而不是你。'],
+      fill:['深夜回到家，你感到一种说不出的空。','一件期待很久的事结束了，心里反而没着落。','今天很累，但你不想这么早结束这一天。','你刚被拒绝，手机里正好弹出购物提醒。'],
+      compare:['朋友分享了一个比你想象中更好的消息。','你看到同龄人完成了你仍在等待的事。','一个与你条件相近的人突然被很多人认可。','你刷到熟人的生活，看起来比你轻松得多。'],
+      rage:['一条重要消息被对方用敷衍的表情回复。','你辛苦做的事，被人轻描淡写地否定。','有人当众越过了你已经说清楚的边界。','计划被临时改掉，而你是最后才知道的人。'],
+      pride:['复盘会上，有人指出了你方案里明显的漏洞。','你需要向一个经验不如你的人请教。','你做得不如预期，却有人正好看见了。','别人给出的建议，听起来像是在教你做事。'],
+      withdraw:['待办事项堆满屏幕，你已经不知道先做哪个。','你和重要的人有了争执，对话还没有结束。','一件事并不难，但你已经拖了很久。','所有人都在等你的回复，而你只想消失一会儿。'],
+      possess:['重要的人突然改了原本和你的计划。','一段关系没有明确的定义，也没有明确的方向。','你最在意的东西开始不在你能掌控的范围内。','对方说“晚点再和你解释”，但没有给时间。']
+    };
+    const responses={
+      desire:['把注意力收回到自己的安排','承认我想被回应，但先不追问','发一句若有若无的试探','立刻想办法把TA拉回我的视线'],
+      fill:['给自己留十分钟空白','做一件真正能照顾自己的小事','找点东西把这份空填满','不管够不够，立刻加码'],
+      compare:['祝福，然后回到自己的节奏','记下我也想要的那一部分','开始反复盘点我们之间的差距','忍不住想证明我也不能输'],
+      rage:['等情绪退一点，再讲清边界','直接说：这让我不舒服','用语气让对方知道我不高兴','立刻顶回去，不能输'],
+      pride:['先问：我忽略了什么？','听完后再说我的理由','先为自己辩护','让对方明白他不该质疑我'],
+      withdraw:['拆成一个小动作，马上开始','告诉别人我需要一点支持','先拖着，等状态回来','直接关机，什么也不想碰'],
+      possess:['说出我的不安，一起协商','提醒对方我需要清楚的交代','旁敲侧击想弄明白','必须现在知道全部细节']
+    };
+    const imageAssets={pride:'欲望圣殿_01_傲慢.png',compare:'欲望圣殿_02_嫉妒.png',rage:'欲望圣殿_03_愤怒.png',withdraw:'欲望圣殿_04_懒惰.png',possess:'欲望圣殿_05_贪婪.png',fill:'欲望圣殿_06_暴食.png',desire:'欲望圣殿_07_色欲.png'};
+    let index=0, answers=[];
+    const $=id=>document.getElementById(id);
+    function show(name){ ['home','quiz','checkpoint','results'].forEach(id=>$(id).classList.toggle('hide',id!==name)); window.scrollTo({top:0,behavior:'instant'}); }
+    function renderQuestion(){ const q=questions[index], key=q.key, sceneIndex=questions.slice(0,index).filter(item=>item.key===key&&!item.scene).length, choices=q.options||responses[key]; $('counter').textContent=String(index+1).padStart(2,'0')+' / '+questions.length; $('progress').style.width=((index)/questions.length*100)+'%'; $('dimension').textContent=q.scoring?'校准题 / 多场景交叉验证':dimensionNames[key]; $('question').textContent=q.scene||scenes[key][sceneIndex]; $('questionArt').src=imageAssets[key]; $('doorMark').innerHTML=`THE ${String(index+1).padStart(2,'0')} DOOR<br>${q.scoring?'校准反应模式':'选择你的第一反应'}`; $('back').style.visibility=index?'visible':'hidden'; $('options').innerHTML=''; choices.forEach((label,value)=>{ const b=document.createElement('button'); b.className='option'+(answers[index]===value?' selected':''); b.innerHTML=`<small>${String.fromCharCode(65+value)} / </small>${label}`; b.onclick=()=>{answers[index]=value; if(index===9||index===19){showCheckpoint(index===9?0:1);}else if(index<questions.length-1){index++;renderQuestion();}else{renderResult();}}; $('options').appendChild(b); }); }
+    function pointVector(q,value){ return q.scoring?q.scoring[value]:{[q.key]:value,[crossPairs[q.key]]:value*.35}; }
+    function scores(){ const raw={desire:0,fill:0,compare:0,rage:0,pride:0,withdraw:0,possess:0}, max={desire:0,fill:0,compare:0,rage:0,pride:0,withdraw:0,possess:0}; questions.forEach((q,i)=>{ const points=pointVector(q,answers[i]??0), all=Array.from({length:4},(_,value)=>pointVector(q,value)); Object.entries(points).forEach(([k,v])=>raw[k]+=v); Object.keys(max).forEach(k=>max[k]+=Math.max(...all.map(v=>v[k]||0))); }); Object.keys(raw).forEach(k=>raw[k]=Math.round(raw[k]/max[k]*100)); return raw; }
+    const checkpointMessages=[{eyebrow:'第一层线索已收集',title:'你的反应，开始出现稳定倾向。',copy:'前十道题记录的是你对关注、比较与边界的第一反应。别急着判断好坏，你已经比大多数人更接近自己的真实模式。',image:'compare'},{eyebrow:'第二层校验即将开始',title:'现在，换一个场景确认同一件事。',copy:'前二十道题已经形成初步画像。最后十题会从关系、压力与公开情境交叉校验，让结果不只取决于某一个瞬间。',image:'pride'}];
+    function showCheckpoint(stage){ const data=checkpointMessages[stage]; $('checkpointCount').textContent=(stage?20:10)+' / '+questions.length; $('checkpointEyebrow').textContent=data.eyebrow; $('checkpointTitle').textContent=data.title; $('checkpointCopy').textContent=data.copy; $('checkpointImage').src=imageAssets[data.image]; show('checkpoint'); }
+    function archiveNumber(s){ return String(100+Object.values(s).reduce((a,b)=>a+b,0)%899).padStart(3,'0'); }
+    function drawRadar(s){ const svg=$('radar'), keys=Object.keys(s), cx=205,cy=163,R=130, pts=(r)=>keys.map((_,i)=>{let a=-Math.PI/2+i*Math.PI*2/7;return `${cx+Math.cos(a)*r},${cy+Math.sin(a)*r}`}).join(' '); const axis=keys.map((k,i)=>{let a=-Math.PI/2+i*Math.PI*2/7,x=cx+Math.cos(a)*R,y=cy+Math.sin(a)*R,lx=cx+Math.cos(a)*(R+23),ly=cy+Math.sin(a)*(R+23);return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"/><text x="${lx}" y="${ly}" text-anchor="middle">${types[k].name}</text>`}).join(''); const result=keys.map((k,i)=>{let a=-Math.PI/2+i*Math.PI*2/7,r=R*(.18+s[k]/100*.82);return `${cx+Math.cos(a)*r},${cy+Math.sin(a)*r}`}).join(' '); svg.innerHTML=`<g fill="none" stroke="#171716" stroke-width="1.15" opacity=".8"><polygon points="${pts(R)}"/><polygon points="${pts(R*.72)}"/><polygon points="${pts(R*.44)}"/><polygon points="${pts(R*.18)}"/>${axis}</g><polygon points="${result}" fill="#a3372c" fill-opacity=".18" stroke="#a3372c" stroke-width="2"/><g fill="#a3372c">${keys.map((k,i)=>{let a=-Math.PI/2+i*Math.PI*2/7,r=R*(.18+s[k]/100*.82);return `<circle cx="${cx+Math.cos(a)*r}" cy="${cy+Math.sin(a)*r}" r="3"/>`}).join('')}</g><style>text{font-family:'Songti SC',serif;font-size:14px;fill:#171716}</style>`; }
+    function drawSpectrum(s,v){ const svg=$('spectrumChart'), keys=Object.keys(s), make=(cx,values,color,title,names)=>{ const cy=155,R=83,pts=r=>keys.map((_,i)=>{const a=-Math.PI/2+i*Math.PI*2/7;return `${cx+Math.cos(a)*r},${cy+Math.sin(a)*r}`}).join(' '); const axes=keys.map((k,i)=>{const a=-Math.PI/2+i*Math.PI*2/7, x=cx+Math.cos(a)*R,y=cy+Math.sin(a)*R,lx=cx+Math.cos(a)*(R+18),ly=cy+Math.sin(a)*(R+18); return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"/><text x="${lx}" y="${ly}" text-anchor="middle">${names[k]}</text>`}).join(''); const data=keys.map((k,i)=>{const a=-Math.PI/2+i*Math.PI*2/7,r=R*(.17+values[k]/100*.83); return `${cx+Math.cos(a)*r},${cy+Math.sin(a)*r}`}).join(' '); return `<text x="${cx}" y="22" text-anchor="middle" class="chart-title">${title}</text><g stroke="#6f535a" stroke-width="1" fill="none"><polygon points="${pts(R)}"/><polygon points="${pts(R*.66)}"/><polygon points="${pts(R*.33)}"/>${axes}</g><polygon points="${data}" fill="${color}" fill-opacity=".18" stroke="${color}" stroke-width="2.2"/>${keys.map((k,i)=>{const a=-Math.PI/2+i*Math.PI*2/7,r=R*(.17+values[k]/100*.83);return `<circle cx="${cx+Math.cos(a)*r}" cy="${cy+Math.sin(a)*r}" r="2.7" fill="${color}"/>`}).join('')}`; }; svg.innerHTML=`<style>text{font-family:'Songti SC',serif;font-size:11px;fill:#d9c6be}.chart-title{font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;fill:#efb0bd}</style>${make(105,s,'#d96a82','七宗罪',Object.fromEntries(keys.map(k=>[k,types[k].name])))}${make(315,v,'#efb0bd','七美德',virtues)}`; }
+    function drawSinRadar(s){ const svg=$('spectrumChart'), keys=Object.keys(s), cx=210,cy=194,R=121, point=(i,r)=>{const a=-Math.PI/2+i*Math.PI*2/7; return [cx+Math.cos(a)*r,cy+Math.sin(a)*r];}, pts=r=>keys.map((_,i)=>point(i,r).join(',')).join(' '); const axes=keys.map((k,i)=>{const [x,y]=point(i,R),[lx,ly]=point(i,R+39), scoreY=ly+17; return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"/><text x="${lx}" y="${ly}" text-anchor="middle" class="label">${types[k].name}</text><text x="${lx}" y="${scoreY}" text-anchor="middle" class="score">${s[k]} 分</text>`;}).join(''); const data=keys.map((k,i)=>point(i,R*(.13+s[k]/100*.87)).join(',')).join(' '); svg.innerHTML=`<style>.label{font-family:"Microsoft YaHei",sans-serif;font-size:17px;font-weight:700;fill:#f3e5dd}.score{font-family:Arial,sans-serif;font-size:13px;fill:#efa2af}.guide{stroke:#755158;stroke-width:1.2;fill:none}.axis{stroke:#68454d;stroke-width:1.2}.data{fill:#d45a76;fill-opacity:.24;stroke:#ed8295;stroke-width:3}</style><text x="210" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" letter-spacing="3" fill="#e8a1af">SEVEN SINS RADAR</text><g class="guide"><polygon points="${pts(R)}"/><polygon points="${pts(R*.75)}"/><polygon points="${pts(R*.5)}"/><polygon points="${pts(R*.25)}"/></g><g class="axis">${keys.map((_,i)=>{const [x,y]=point(i,R); return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"/>`;}).join('')}</g><polygon class="data" points="${data}"/>${keys.map((k,i)=>{const [x,y]=point(i,R*(.13+s[k]/100*.87));return `<circle cx="${x}" cy="${y}" r="4.5" fill="#efa2af"/>`;}).join('')}${axes}`; }
+    function renderSinBars(s){ $('sinBars').innerHTML=Object.entries(s).sort((a,b)=>b[1]-a[1]).map(([key,score])=>`<div class="sin-bar"><img src="${imageAssets[key]}" alt="${types[key].name}圣殿"><div class="sin-bar-main"><div class="sin-bar-head"><span>${types[key].name}</span><span>${types[key].label}</span></div><div class="sin-bar-track"><span style="width:${score}%"></span></div></div><strong>${score}</strong></div>`).join(''); }
+    function renderResult(){ const s=scores(), v=Object.fromEntries(Object.entries(s).map(([k,score])=>[k,100-score])), [key]=Object.entries(s).sort((a,b)=>b[1]-a[1])[0], [virtueKey]=Object.entries(v).sort((a,b)=>b[1]-a[1])[0], t=types[key], profile=reportProfiles[key], no=archiveNumber(s); $('typeName').textContent=t.name; $('typeEn').textContent=t.en; $('quote').innerHTML=t.quote.replace('\n','<br>'); $('trigger').textContent=t.trigger; $('relationship').textContent=profile.relationship; $('blindSpot').textContent=profile.blind; $('action').textContent=t.action; $('readingImage').src=imageAssets[key]; $('coreNeed').textContent=profile.need; $('coreNeedCopy').textContent=profile.needCopy; $('needKeyword').textContent=profile.need.replace('你想',''); $('virtueName').textContent=virtues[key]; $('virtueCopy').textContent=profile.virtue; $('ritualSteps').innerHTML=profile.ritual.map(item=>`<li>${item}</li>`).join(''); $('resultNo').textContent='ARCHIVE '+no; $('cardNo').textContent='NO. '+no; $('resultCard').style.setProperty('--card-image',`url("${imageAssets[key]}")`); $('resultCopy').textContent=`你的主罪是「${t.name}」${s[key]} 分；可调用的首要资源是「${virtues[virtueKey]}」${v[virtueKey]} 分。`; drawRadar(s); drawSinRadar(s); renderSinBars(s); $('progress').style.width='100%'; show('results'); }
+    function flash(message){ $('toast').textContent=message; $('toast').classList.add('on'); setTimeout(()=>$('toast').classList.remove('on'),1900); }
+    function copyResult(){ const name=$('typeName').textContent, quote=$('quote').innerText.replace(/\n/g,' '), no=$('cardNo').textContent; const text=`我在「暗涌档案｜七种欲望测试」测到：${name}。${quote} ${no}`; navigator.clipboard?.writeText(text).then(()=>flash('已复制，可以去晒结果了。')).catch(()=>flash('请长按结果卡保存。')); }
+    function downloadSVG(){
+      const s=scores(), [active]=Object.entries(s).sort((a,b)=>b[1]-a[1])[0], name=$('typeName').textContent, no=$('cardNo').textContent, quote=$('quote').innerText.split('\n'), width=800,height=1000;
+      const esc=v=>v.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+      const radar=$('radar').innerHTML;
+      const goat=`<g transform="translate(668 76)" fill="none" stroke="#402d23" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16C1 13 2 3 10 5c5 1 4 8 1 10M32 16c9-3 8-13 0-11-5 1-4 8-1 10"/><path d="M9 13c-2 10 0 20 12 25 12-5 14-15 12-25-5-4-19-4-24 0Z"/><path d="M7 22h11m7 0h11m-18 0h7m-13-3v6m16-6v6M18 30c2 2 5 2 7 0"/><path fill="#402d23" stroke="none" d="m18 35 3 7 3-7z"/></g><text x="685" y="132" text-anchor="middle" class="sans" font-size="11">羊叔档案</text>`;
+      const seals=Object.entries(sinSeals).map(([key,label],i)=>{ const x=440+(i%2)*80,y=177+Math.floor(i/2)*42,activeStyle=key===active; return `<g transform="translate(${x} ${y})"><rect width="64" height="28" fill="${activeStyle?'#722d2b':'#efe0bf'}" stroke="#402d23"/><text x="32" y="20" text-anchor="middle" fill="${activeStyle?'#f5dfbd':'#402d23'}" font-family="serif" font-size="15">${label}</text></g>`; }).join('');
+      const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><rect width="800" height="1000" fill="#ede6d8"/><rect x="22" y="22" width="756" height="956" fill="none" stroke="#171716" stroke-width="2"/><style>.sans{font-family:Arial,sans-serif;letter-spacing:3px}.serif{font-family:serif;fill:#171716}</style><text x="54" y="66" class="sans" font-size="17">UNDERTOW / DESIRE PROFILE</text><text x="615" y="66" text-anchor="end" class="sans" fill="#a3372c" font-size="17">${esc(no)}</text>${goat}<text x="54" y="150" class="serif" font-size="76" letter-spacing="12">${esc(name)}</text><text x="58" y="188" class="sans" fill="#a3372c" font-size="18">${esc($('typeEn').textContent)}</text>${seals}<g transform="translate(0 165) scale(2)">${radar}</g><path d="M160 655c-36-16-58 20-47 51 10 28-15 39-10 74 4 26 24 40 55 38 30-2 49-20 42-50-4-22 13-45 5-71-7-25-20-34-45-42z" fill="#ede6d8" stroke="#171716" stroke-width="3"/><circle cx="160" cy="637" r="50" fill="#ede6d8" stroke="#171716" stroke-width="3"/><text x="160" y="651" text-anchor="middle" class="sans" font-size="36">⊘</text><line x1="54" y1="825" x2="746" y2="825" stroke="#171716" stroke-width="2"/><text x="54" y="875" class="serif" font-size="30">${esc(quote[0]||'')}</text><text x="54" y="918" class="serif" font-size="30">${esc(quote[1]||'')}</text><text x="54" y="950" class="sans" font-size="14">FOR ENTERTAINMENT &amp; SELF-REFLECTION</text><circle cx="713" cy="933" r="30" fill="none" stroke="#a3372c" stroke-width="2"/><text x="713" y="928" text-anchor="middle" fill="#a3372c" font-size="14" font-family="serif">欲望</text><text x="713" y="945" text-anchor="middle" fill="#a3372c" font-size="14" font-family="serif">档案</text></svg>`;
+      const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml;charset=utf-8'})); a.download='暗涌档案_'+name+'.svg'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),500); flash('结果卡已下载。');
+    }
+    async function downloadParchmentCard(){
+      const s=scores(), [active]=Object.entries(s).sort((a,b)=>b[1]-a[1])[0], name=$('typeName').textContent, no=$('cardNo').textContent, quote=$('quote').innerText.split('\n');
+      const esc=v=>v.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+      try {
+        const imageData=await new Promise((resolve,reject)=>{ const img=new Image(); img.onload=()=>{ const canvas=document.createElement('canvas'); canvas.width=img.naturalWidth; canvas.height=img.naturalHeight; canvas.getContext('2d').drawImage(img,0,0); resolve(canvas.toDataURL('image/png')); }; img.onerror=reject; img.src=imageAssets[active]; });
+        const goat=`<g transform="translate(672 62)" fill="none" stroke="#38261d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16C1 13 2 3 10 5c5 1 4 8 1 10M32 16c9-3 8-13 0-11-5 1-4 8-1 10"/><path d="M9 13c-2 10 0 20 12 25 12-5 14-15 12-25-5-4-19-4-24 0Z"/><path d="M7 22h11m7 0h11m-18 0h7m-13-3v6m16-6v6M18 30c2 2 5 2 7 0"/><path fill="#38261d" stroke="none" d="m18 35 3 7 3-7z"/></g><text x="692" y="121" text-anchor="middle" font-family="serif" font-size="13" fill="#38261d">羊叔档案</text>`;
+        const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000"><defs><linearGradient id="fade" x1="0" x2="0" y1="0" y2="1"><stop offset="44%" stop-color="#ead9bc" stop-opacity="0"/><stop offset="70%" stop-color="#ead9bc" stop-opacity=".9"/><stop offset="100%" stop-color="#ead9bc" stop-opacity=".98"/></linearGradient></defs><rect width="800" height="1000" fill="#ead9bc"/><image href="${imageData}" x="22" y="22" width="756" height="956" preserveAspectRatio="xMidYMid slice"/><rect x="22" y="22" width="756" height="956" fill="url(#fade)"/><rect x="22" y="22" width="756" height="956" fill="none" stroke="#38261d" stroke-width="2"/><text x="55" y="65" font-family="Arial,sans-serif" font-size="15" letter-spacing="3" fill="#38261d">YANGSHU / DESIRE ARCHIVE</text><text x="614" y="65" text-anchor="end" font-family="Arial,sans-serif" font-size="15" letter-spacing="3" fill="#8d3728">${esc(no)}</text>${goat}<text x="55" y="690" font-family="serif" font-size="72" letter-spacing="12" fill="#271a16">${esc(name)}</text><text x="60" y="728" font-family="Arial,sans-serif" font-size="18" letter-spacing="3" fill="#8d3728">${esc($('typeEn').textContent)}</text><line x1="55" y1="762" x2="745" y2="762" stroke="#38261d" stroke-width="2"/><text x="55" y="815" font-family="serif" font-size="30" fill="#271a16">${esc(quote[0]||'')}</text><text x="55" y="858" font-family="serif" font-size="30" fill="#271a16">${esc(quote[1]||'')}</text><text x="55" y="940" font-family="Arial,sans-serif" font-size="13" letter-spacing="2" fill="#5a4638">FOR ENTERTAINMENT &amp; SELF-REFLECTION</text><text x="745" y="940" text-anchor="end" font-family="serif" font-size="15" fill="#8d3728">${esc(name)} · 欲望圣殿</text></svg>`;
+        const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml;charset=utf-8'})); a.download='羊叔欲望圣殿_'+name+'.svg'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),500); flash('羊皮纸结果卡已下载。');
+      } catch { flash('图片读取失败，请在浏览器中重新打开测试页。'); }
+    }
+    $('start').onclick=()=>{index=0;answers=[];renderQuestion();show('quiz');}; $('back').onclick=()=>{if(index){index--;renderQuestion();}}; $('checkpointContinue').onclick=()=>{index++;renderQuestion();show('quiz');}; $('restart').onclick=()=>show('home'); $('copy').onclick=copyResult; $('download').onclick=downloadParchmentCard;
+  </script>
+</body>
 </html>
