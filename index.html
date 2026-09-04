@@ -32,6 +32,12 @@
     .diagram .figure:after { content:"×  ×"; letter-spacing:7px; position:absolute; left:16px; top:-13px; font-family:Arial,sans-serif; font-size:15px; }
     .cta { border:0; background:var(--ink); color:var(--paper); padding:17px 20px; width:100%; font-weight:600; font-size:16px; letter-spacing:1px; box-shadow:4px 4px 0 var(--red); transition:transform .16s,box-shadow .16s; }
     .cta:hover { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--red); }
+    .access-gate { margin:0 0 16px; padding:14px; border:1px solid #67444c; background:rgba(255,255,255,.025); }
+    .access-gate label { display:block; margin:0 0 9px; color:#e9a0ae; font:10px Arial,sans-serif; letter-spacing:2px; }
+    .access-gate input { width:100%; border:1px solid #8e6870; border-radius:0; background:#27171b; color:#f4e9df; padding:13px 14px; font:600 15px Arial,sans-serif; letter-spacing:1.5px; outline:none; }
+    .access-gate input:focus { border-color:#e9a0ae; box-shadow:0 0 0 2px rgba(233,160,174,.14); }
+    .access-status { min-height:17px; margin:8px 0 0; color:#c7afa4; font-size:12px; }
+    .access-status.error { color:#ffb4bf; }
     .note { color:var(--muted); font-size:12px; line-height:1.7; margin:18px 0 0; text-align:center; }
     #home,#quiz { background:#1b1114; color:#f4e9df; }
     #home .brand,#quiz .progress-line,#quiz .question-bottom { color:#d8b9a8; }
@@ -166,7 +172,8 @@
           <div class="figure"></div>
         </div>
         <div class="cover-atlas" aria-label="七座欲望圣殿插画"><img src="temple-pride.png" alt="傲慢圣殿"><img src="temple-envy.png" alt="嫉妒圣殿"><img src="temple-wrath.png" alt="愤怒圣殿"><img src="temple-sloth.png" alt="懒惰圣殿"><img src="temple-greed.png" alt="贪婪圣殿"><img src="temple-gluttony.png" alt="暴食圣殿"><img src="temple-lust.png" alt="色欲圣殿"></div>
-        <button class="cta" id="start">开始建立档案　→</button>
+        <div class="access-gate"><label for="accessCode">TEST ACCESS / 测试码</label><input id="accessCode" type="text" inputmode="text" autocapitalize="characters" autocomplete="off" placeholder="输入测试码后开始"><p id="accessStatus" class="access-status">输入测试码，开启 30 扇情境之门。</p></div>
+        <button class="cta" id="start">验证并开始建立档案　→</button>
         <p class="note">30 扇情境之门 · 双重交叉验证 · 约 4 分钟</p>
       </div>
     </section>
@@ -275,6 +282,7 @@
       possess:['说出我的不安，一起协商','提醒对方我需要清楚的交代','旁敲侧击想弄明白','必须现在知道全部细节']
     };
     const imageAssets={pride:'temple-pride.png',compare:'temple-envy.png',rage:'temple-wrath.png',withdraw:'temple-sloth.png',possess:'temple-greed.png',fill:'temple-gluttony.png',desire:'temple-lust.png'};
+    const ACCESS_CODE='YANGSHU2026';
     let index=0, answers=[];
     const $=id=>document.getElementById(id);
     function show(name){ ['home','quiz','checkpoint','results'].forEach(id=>$(id).classList.toggle('hide',id!==name)); window.scrollTo({top:0,behavior:'instant'}); }
@@ -314,7 +322,8 @@
         const a=document.createElement('a'); a.href=URL.createObjectURL(png); a.download='羊叔欲望圣殿_'+name+'.png'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),500); flash('羊皮纸结果卡已下载为 PNG 图片。');
       } catch { flash('图片读取失败，请在浏览器中重新打开测试页。'); }
     }
-    $('start').onclick=()=>{index=0;answers=[];renderQuestion();show('quiz');}; $('back').onclick=()=>{if(index){index--;renderQuestion();}}; $('checkpointContinue').onclick=()=>{index++;renderQuestion();show('quiz');}; $('restart').onclick=()=>show('home'); $('copy').onclick=copyResult; $('download').onclick=downloadParchmentCard;
+    function startQuiz(){ const entered=$('accessCode').value.trim().toUpperCase(), status=$('accessStatus'); if(entered!==ACCESS_CODE){status.textContent='测试码不正确，请确认后再试。'; status.classList.add('error'); $('accessCode').focus(); return;} status.textContent='验证成功，正在开启档案。'; status.classList.remove('error'); index=0; answers=[]; renderQuestion(); show('quiz'); }
+    $('start').onclick=startQuiz; $('accessCode').onkeydown=e=>{if(e.key==='Enter')startQuiz();}; $('back').onclick=()=>{if(index){index--;renderQuestion();}}; $('checkpointContinue').onclick=()=>{index++;renderQuestion();show('quiz');}; $('restart').onclick=()=>show('home'); $('copy').onclick=copyResult; $('download').onclick=downloadParchmentCard;
   </script>
 </body>
 </html>
